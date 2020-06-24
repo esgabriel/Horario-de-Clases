@@ -24,34 +24,43 @@ public class HorarioDeClases {
         Horario horario =  new Horario();
         ExperienciaEducativa  experienciaEducativa = new ExperienciaEducativa();
         
-        int opcion = 0;
+        String opcion = "";
         
-        do{
+        do
+        {
             System.out.println("Bienvenido al Sistema de Horarios.");
             System.out.println("Opcion 1: Agregar");
             System.out.println("Opcion 2: Eliminar");
             System.out.println("Opcion 3: Modificar");
             System.out.println("Opcion 4: Mostrar Horario");
             System.out.println("Opcion 0: Salir");
-            System.out.println("Ingresa la opción deseada: ");
-            opcion = entrada.nextInt();
+            System.out.print("Ingresa la opción deseada: ");
+            opcion = entrada.nextLine();
 
-                if (opcion == 1) {
+                if (opcion.equals("1")) {
+                    System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+                    System.out.println("Agregar experiencia educativa al horario");
+                    horario.agregarHorario();
+                }
+                if (opcion.equals("2")) {
 
                 }
-                if (opcion == 2) {
+                if (opcion.equals("3")) {
 
                 }
-                if (opcion == 3) {
-
-                }
-                if (opcion == 4) {
+                if (opcion.equals("4")) {
 
                 }
                 else{
-                    System.out.println("Ingreso un caracter Incorrecto. ");
+                    if (opcion.equals("0")) 
+                    {
+                        System.out.println("Gracias");
+                    }else{
+                        System.out.println("Ingreso un caracter Incorrecto. ");
+                    }
+                    
                 }
-        }while(opcion !=0);
+        }while(!opcion.equals("0"));
     }
-    
+   
 }

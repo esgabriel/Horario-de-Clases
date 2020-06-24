@@ -20,4 +20,8 @@ public class Salon
     public void añadirSalon(int salon){
         this.salon=salon;
     }
+    
+    public boolean validarSalon(String cadena){
+        return false;
+    }
 }
