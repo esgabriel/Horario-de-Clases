@@ -13,4 +13,14 @@ public class ExperienciaEducativa
 {
     private int idExperienciaEducativa;
     private String nombreExperienciaEducativa;
+    
+    public ExperienciaEducativa(){
+        this.idExperienciaEducativa = 0;
+        this.nombreExperienciaEducativa ="";
+    }
+    
+    public void añadirExperienciaEducativa(int idExperiencia, String NombreExperiencia){
+        this.idExperienciaEducativa = idExperiencia;
+        this.nombreExperienciaEducativa = NombreExperiencia;
+    } 
 }

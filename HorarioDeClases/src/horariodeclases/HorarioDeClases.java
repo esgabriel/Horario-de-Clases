@@ -5,6 +5,8 @@
  */
 package horariodeclases;
 
+import java.util.Scanner;
+
 /**
  *
  * @author TheHu
@@ -15,7 +17,41 @@ public class HorarioDeClases {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Scanner entrada = new Scanner(System.in);
+        
+        Profesor profesor =  new Profesor();
+        Salon salon = new Salon();
+        Horario horario =  new Horario();
+        ExperienciaEducativa  experienciaEducativa = new ExperienciaEducativa();
+        
+        int opcion = 0;
+        
+        do{
+            System.out.println("Bienvenido al Sistema de Horarios.");
+            System.out.println("Opcion 1: Agregar");
+            System.out.println("Opcion 2: Eliminar");
+            System.out.println("Opcion 3: Modificar");
+            System.out.println("Opcion 4: Mostrar Horario");
+            System.out.println("Opcion 0: Salir");
+            System.out.println("Ingresa la opción deseada: ");
+            opcion = entrada.nextInt();
+
+                if (opcion == 1) {
+
+                }
+                if (opcion == 2) {
+
+                }
+                if (opcion == 3) {
+
+                }
+                if (opcion == 4) {
+
+                }
+                else{
+                    System.out.println("Ingreso un caracter Incorrecto. ");
+                }
+        }while(opcion !=0);
     }
     
 }

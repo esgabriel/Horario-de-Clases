@@ -12,4 +12,12 @@ package horariodeclases;
 public class Salon 
 {
     private int salon;
+    
+    public Salon(){
+        this.salon = 0;
+    }
+    
+    public void añadirSalon(int salon){
+        this.salon=salon;
+    }
 }
