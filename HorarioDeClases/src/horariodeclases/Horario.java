@@ -1,32 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package horariodeclases;
 
 import java.util.Scanner;
 import java.io.*;
 
-/**
- *
- * @author TheHu
- */
 public class Horario {
 
-    private String fecha;
+    private String dia;
     private String hora;
 
-    public void agregarHorario() {
+    public void agregarHorario() 
+    {
         //Salon salon = new Salon();
-        Scanner in = new Scanner(System.in);
-
+        Scanner leerConsola = new Scanner(System.in);
+        String opcion = "";
+        Archivo archivo = new Archivo();
+        boolean disponibilidad = false;
         System.out.print("Ingrese el nombre de la Experiencia Educativa: ");
-        String experienciaEducativa = in.nextLine();
-        if(true)
-        {
-            Profesor profesor = new Profesor();
-        }
+        String experienciaEducativa = leerConsola.nextLine();
+        System.out.println("Ingresa el nombre completo del maestro (empezar por apellido paterno): ");
+        String nombreProfesor = leerConsola.nextLine();
+        
+        do{
+           System.out.println("Ingrese los días que se impartira la clase(Los dias deben ser separados por coma ','): ");
+           String diaClase = leerConsola.nextLine();
+           System.out.println("Ingresar la hora de clase de la Experiencia Educativa: ");
+           String horaClase = leerConsola.nextLine(); 
+           disponibilidad = archivo.verificarHora(horaClase, diaClase);
+            if (disponibilidad) {
+               System.out.println("Ingrese el salón de clases");
+               int salonClases = leerConsola.nextInt(); 
+               
+            }
+            else{
+                System.out.println("La hora y día ingresados No se encuentran disponibles");
+                System.out.println("Si desea salir del registro ingrese cero (0) de lo contrario ingresa cualquier otra opción: ");
+                opcion = leerConsola.nextLine();
+            }
+        }while(opcion.equals("0") || disponibilidad);
+ 
     }
 
     public void verHorario()
@@ -35,8 +46,9 @@ public class Horario {
         
         System.out.println("Hora\tLunes\tMartes\tMiercoles\tJueves\tViernes\t");
         archivo.leerArchivo("Horario.txt");
-        System.out.println("Experiencia Educativa\t\tProfesor");
+        System.out.println("\nExperiencia Educativa\t\tProfesor");
         archivo.leerArchivo("ExperienciasEducativas.txt");
+        System.out.println("\n");
         
     }
     
@@ -50,4 +62,5 @@ public class Horario {
         }
         System.out.println(" ");
     }
+    
 }
