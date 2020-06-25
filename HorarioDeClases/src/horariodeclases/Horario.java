@@ -4,79 +4,50 @@
  * and open the template in the editor.
  */
 package horariodeclases;
+
 import java.util.Scanner;
 import java.io.*;
+
 /**
  *
  * @author TheHu
  */
-public class Horario 
-{
+public class Horario {
+
     private String fecha;
     private String hora;
-    
-    public void agregarHorario()
-    {
+
+    public void agregarHorario() {
         //Salon salon = new Salon();
         Scanner in = new Scanner(System.in);
-        
+
         System.out.print("Ingrese el nombre de la Experiencia Educativa: ");
-        String experienciaEducativa=in.nextLine();
+        String experienciaEducativa = in.nextLine();
+        if(true)
+        {
+            Profesor profesor = new Profesor();
+        }
+    }
+
+    public void verHorario()
+    {
+        Archivo archivo = new Archivo();
         
+        System.out.println("Hora\tLunes\tMartes\tMiercoles\tJueves\tViernes\t");
+        archivo.leerArchivo("Horario.txt");
+        System.out.println("Experiencia Educativa\t\tProfesor");
+        archivo.leerArchivo("ExperienciasEducativas.txt");
         
     }
     
-    public static void leerArchivo() 
+    public void crearFormatoHorario(String registro)
     {
-        String cadena;
-        FileReader fr = null; //Abrir archivo
-        BufferedReader br = null; //Leer archivo
-
-        try {
-            fr = new FileReader("ExperienciasEducativas.txt");
-            br = new BufferedReader(fr);
-
-            try {
-                while ((cadena = br.readLine()) != null) {
-                    System.out.println(cadena);
-                }
-            } catch (IOException e2) {
-                System.out.println("Error de lectura");
-            }
-        } catch (FileNotFoundException e2) {
-            System.out.println("Archivo no encontrado");
-        } finally {
-            try {
-                if (fr != null) {
-                    fr.close();
-                }
-            } catch (Exception e) {
-                System.out.println("Error al cerrar archivo de texto");
-            }
+        String formato[] = registro.split("/");
+        
+        for(int i=0; i<formato.length; i++)
+        {
+            System.out.print(formato[i]+"\t");
         }
-    }
-
-    public static void agregarTexto(String texto) 
-    {
-        FileWriter experienciasEducativas = null; //Abrir el archivo
-        PrintWriter pw = null; //Escribir en el archivo
-
-        try {
-            experienciasEducativas = new FileWriter("ExperienciasEducativas.txt", true);
-            pw = new PrintWriter(experienciasEducativas);
-
-            System.out.println("Escribimos en el archivo");
-            pw.println(texto);
-        } catch (Exception e) {
-            System.out.println("Error al abrir el archivo");
-        } finally {
-            try {
-                if (null != experienciasEducativas) {
-                    experienciasEducativas.close();
-                }
-            } catch (Exception e2) {
-                System.out.println("Error al cerrar el archivo");
-            }
-        }
+        System.out.println(" ");
     }
 }
