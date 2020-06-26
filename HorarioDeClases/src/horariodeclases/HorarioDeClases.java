@@ -26,8 +26,8 @@ public class HorarioDeClases {
         do {
             System.out.println("Bienvenido al Sistema de Horarios.");
             System.out.println("Opcion 1: Agregar Experiencia Educativa");
-            System.out.println("Opcion 2: Eliminar Experiencia Educativa");
-            System.out.println("Opcion 3: Modificar Experiencia Educativa");
+            System.out.println("Opcion 2: Eliminar Experiencia Educativa (Metodo en construccion)");
+            System.out.println("Opcion 3: Modificar Experiencia Educativa (Metodo en construccion)");
             System.out.println("Opcion 4: Mostrar Horario");
             System.out.println("Opcion 0: Salir");
             System.out.print("Ingresa la opción deseada: ");
@@ -39,10 +39,10 @@ public class HorarioDeClases {
                 horario.agregarHorario();
             }
             if (opcion.equals("2")) {
-
+                System.out.println("~~Metodo en construccion~~");
             }
             if (opcion.equals("3")) {
-
+                System.out.println("~~Metodo en construccion~~");
             }
             if (opcion.equals("4")) {
                 horario.verHorario();
