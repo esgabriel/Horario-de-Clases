@@ -45,14 +45,15 @@ public class HorarioDeClases {
 
             }
             if (opcion.equals("4")) {
-                  horario.verHorario();
+                horario.verHorario();
             } else {
                 if (opcion.equals("0")) {
                     System.out.println("Gracias");
                 } else {
-                    System.out.println("Ingreso un caracter Incorrecto. ");
+                    if (!(Integer.parseInt(opcion) <= 4)) {
+                        System.out.println("Ingreso un caracter Incorrecto. ");
+                    }
                 }
-
             }
         } while (!opcion.equals("0"));
     }
