@@ -108,7 +108,7 @@ public class Archivo
   }
   
   public boolean verificarHora(String hora, String dia){
-        
+
         String cadena;
         boolean disponibilidad = true;
         FileReader abrirArchivo = null; //Abrir archivo
@@ -120,38 +120,39 @@ public class Archivo
 
             try {
                 while ((cadena = leerArchivo.readLine()) != null) {
-                    if (cadena.split("/")[0].equals(hora)) {
+                    String horaTexto=hora+":00";
+                    if (cadena.split("/")[0].equals(horaTexto)) {
                         String diaSemana[] = dia.split(",");
                         String horario[] = cadena.split("/");
                         
                         for (int i = 0; i < diaSemana.length; i++) {
                             // 5 / Mate / 
                             if (diaSemana[i].equalsIgnoreCase("Lunes")) {
-                                if (!horario[1].equals(" ")) {
+                                if (!(horario[1].equals(" "))) {
                                     disponibilidad = false;
                                     break;
                                 }
                             }
                             if (diaSemana[i].equalsIgnoreCase("Martes")) {
-                                if (!horario[2].equals(" ")) {
+                                if (!(horario[2].equals(" "))) {
                                     disponibilidad = false;
                                     break;
                                 }
                             }
                             if (diaSemana[i].equalsIgnoreCase("Miercoles")) {
-                                if (!horario[3].equals(" ")) {
+                                if (!(horario[3].equals(" "))) {
                                     disponibilidad = false;
                                     break;
                                 }
                             }
                             if (diaSemana[i].equalsIgnoreCase("Jueves")) {
-                                if (!horario[4].equals(" ")) {
+                                if (!(horario[4].equals(" "))) {
                                     disponibilidad = false;
                                     break;
                                 }
                             }
                             if (diaSemana[i].equalsIgnoreCase("Viernes")) {
-                                if (!horario[5].equals(" ")) {
+                                if (!(horario[5].equals(" "))) {
                                     disponibilidad = false;
                                     break;
                                 }

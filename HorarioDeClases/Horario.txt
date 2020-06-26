@@ -1,3 +1,4 @@
-5:00/Mate(1)/Mate(1)/Mate(1)/Mate(1)/Mate(1)
-7:00/Mate(2)/Mate(1)/Mate(1)/Mate(1)/Mate(1)
-9:00/Mate(1)/Mate(1)/Mate(1)/Mate(1)/Mate(1)
+5:00/Matematicas (1)/ /Matematicas (1)/ /Matematicas (1)/
+6:00/Programacion (6)/ / /Programacion (6)/ /
+10:00/Sistemas (5)/ / / /Sistemas (5)/
+15:00/Ingles (2)/ / / /Ingles (2)/
