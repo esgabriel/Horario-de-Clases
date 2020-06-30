@@ -8,14 +8,14 @@ public class Horario {
     private String dia;
     private String hora;
 
-    public void agregarHorario() {
+    public void agregarHorario(String experienciaEducativa, String docente,String horario,int salon,String dias) {
         //Salon salon = new Salon();
         Scanner leerConsola = new Scanner(System.in);
         String opcion = "";
         Archivo archivo = new Archivo();
         boolean disponibilidad = false;
         System.out.print("Ingrese el nombre de la Experiencia Educativa: ");
-        String experienciaEducativa = leerConsola.nextLine();
+        //String experienciaEducativa = leerConsola.nextLine();
         System.out.println("Ingresa el nombre completo del maestro (empezar por apellido paterno): ");
         String nombreProfesor = leerConsola.nextLine();
 

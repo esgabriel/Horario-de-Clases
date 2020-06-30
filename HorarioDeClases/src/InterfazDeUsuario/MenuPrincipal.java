@@ -73,6 +73,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 botonAgregarMouseClicked(evt);
             }
         });
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 123, 45));
 
         botonEliminar.setBackground(new java.awt.Color(51, 204, 0));
@@ -110,6 +115,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         EliminarExperienciaEducativa eliminarExperienciaEducativa = new EliminarExperienciaEducativa();
         jDesktopPane1.add(eliminarExperienciaEducativa).setVisible(true);
     }//GEN-LAST:event_botonEliminarMouseClicked
+
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAgregarActionPerformed
 
     /**
      * @param args the command line arguments

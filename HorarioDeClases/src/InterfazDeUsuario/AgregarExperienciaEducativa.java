@@ -5,7 +5,9 @@
  */
 package InterfazDeUsuario;
 
+import horariodeclases.Archivo;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,30 +37,30 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCheckBox5 = new javax.swing.JCheckBox();
+        boxViernes = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         campoHora = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         campoEE = new javax.swing.JTextField();
-        CampoSalon = new javax.swing.JTextField();
+        campoSalon = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         campoDocente = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
+        boxMiercoles = new javax.swing.JCheckBox();
+        boxJueves = new javax.swing.JCheckBox();
+        boxMartes = new javax.swing.JCheckBox();
+        boxLunes = new javax.swing.JCheckBox();
+        boxTodosLosDias = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaHorario = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(1040, 580));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jCheckBox5.setText("Viernes");
-        getContentPane().add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, -1, -1));
+        boxViernes.setText("Viernes");
+        getContentPane().add(boxViernes, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, -1, -1));
 
         jButton1.setText("Agregar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,8 +87,14 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Hora");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+
+        campoEE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoEEActionPerformed(evt);
+            }
+        });
         getContentPane().add(campoEE, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 168, 29));
-        getContentPane().add(CampoSalon, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 72, -1));
+        getContentPane().add(campoSalon, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 72, -1));
 
         jLabel1.setText("Experiencia Educativa");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
@@ -96,34 +104,40 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Docente");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 181, -1, -1));
+
+        campoDocente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoDocenteActionPerformed(evt);
+            }
+        });
         getContentPane().add(campoDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 181, 63, -1));
 
-        jCheckBox1.setText("Miercoles");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        boxMiercoles.setText("Miercoles");
+        boxMiercoles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                boxMiercolesActionPerformed(evt);
             }
         });
-        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
+        getContentPane().add(boxMiercoles, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
 
-        jCheckBox2.setText("Jueves");
-        getContentPane().add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
+        boxJueves.setText("Jueves");
+        getContentPane().add(boxJueves, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
 
-        jCheckBox3.setText("Martes");
-        getContentPane().add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
+        boxMartes.setText("Martes");
+        getContentPane().add(boxMartes, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
 
-        jCheckBox4.setText("Lunes");
-        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+        boxLunes.setText("Lunes");
+        boxLunes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
+                boxLunesActionPerformed(evt);
             }
         });
-        getContentPane().add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, -1, -1));
+        getContentPane().add(boxLunes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, -1, -1));
 
-        jCheckBox6.setText("Todos los días");
-        getContentPane().add(jCheckBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
+        boxTodosLosDias.setText("Todos los días");
+        getContentPane().add(boxTodosLosDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaHorario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null}
             },
@@ -131,7 +145,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
                 "Hora", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaHorario);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 550, 123));
 
@@ -142,13 +156,13 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void boxMiercolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMiercolesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_boxMiercolesActionPerformed
 
-    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox4ActionPerformed
+    private void boxLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxLunesActionPerformed
+         // TODO add your handling code here:
+    }//GEN-LAST:event_boxLunesActionPerformed
 
     private void campoHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoHoraActionPerformed
         // TODO add your handling code here:
@@ -156,31 +170,86 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        MenuPrincipal tabla = new MenuPrincipal();
-        
-        
+        DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
+   
+        if (!campoEE.getText().equals("")) {
+            if (!campoHora.getText().equals("")) {
+                if (!campoSalon.getText().equals("")) {
+                    if (!campoDocente.getText().equals("")) {
+                       if (boxLunes.isSelected() || boxMartes.isSelected() || boxMiercoles.isSelected() || boxJueves.isSelected() || boxViernes.isSelected()) {
+                             Archivo archivo = new Archivo();
+                             String boxSeleccionados = "";
+                             if (boxTodosLosDias.isSelected()) {
+                               boxSeleccionados = "Lunes,Martes,Miercoles,Jueves,Viernes";
+                           }
+                             else{
+                                 if (boxLunes.isSelected()) {
+                                     boxSeleccionados = "Lunes";
+                                 }
+                                 if(boxMartes.isSelected()){
+                                     boxSeleccionados = ",Martes";
+                                 }
+                                 if (boxMiercoles.isSelected()) {
+                                     boxSeleccionados = ",Miercoles";
+                                 }
+                                 if (boxJueves.isSelected()) {
+                                     boxSeleccionados = ",Jueves";
+                                 }
+                                 if (boxViernes.isSelected()) {
+                                     boxSeleccionados = ", Viernes";
+                                 }
+                             }
+                             //archivo.verificarHora(campoHora.getText(), )
+                        }
+                       else{
+                           System.out.println("No se ha seleccionado ninguno de los Días.");
+                       }
+                    }
+                    else{
+                        System.out.println("No se ha ingresado el nombre del Docente.");
+                    }    
+                }
+                else{
+                    System.out.println("No se ha ingresado el número de Salón.");
+                }
+            }
+            else{
+                System.out.println("No se ha  ingresado la hora de Clase.");
+            }
+        }
+        else{
+            System.out.println("No se ha ingresado el nombre de la Experiencia Educativa.");
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void campoEEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoEEActionPerformed
+
+    private void campoDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDocenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoDocenteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CampoSalon;
+    private javax.swing.JCheckBox boxJueves;
+    private javax.swing.JCheckBox boxLunes;
+    private javax.swing.JCheckBox boxMartes;
+    private javax.swing.JCheckBox boxMiercoles;
+    private javax.swing.JCheckBox boxTodosLosDias;
+    private javax.swing.JCheckBox boxViernes;
     private javax.swing.JTextField campoDocente;
     private javax.swing.JTextField campoEE;
     private javax.swing.JTextField campoHora;
+    private javax.swing.JTextField campoSalon;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaHorario;
     // End of variables declaration//GEN-END:variables
 }
