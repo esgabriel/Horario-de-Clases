@@ -54,6 +54,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        setPreferredSize(new java.awt.Dimension(1040, 580));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jCheckBox5.setText("Viernes");
@@ -132,7 +133,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 490, 123));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 550, 123));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
