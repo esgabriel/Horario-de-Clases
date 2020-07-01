@@ -5,6 +5,7 @@
  */
 package horariodeclases;
 
+import InterfazDeUsuario.MenuPrincipal;
 import java.util.Scanner;
 
 /**
@@ -17,7 +18,9 @@ public class HorarioDeClases {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+        MenuPrincipal mp = new MenuPrincipal();
+        mp.setVisible(true);
+        /*Scanner entrada = new Scanner(System.in);
 
         Horario horario = new Horario();
 
@@ -55,7 +58,7 @@ public class HorarioDeClases {
                     }
                 }
             }
-        } while (!opcion.equals("0"));
+        } while (!opcion.equals("0"));*/
     }
 
 }
