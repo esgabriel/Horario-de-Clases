@@ -114,6 +114,7 @@
                           <Component id="jButton1" min="-2" pref="173" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="5" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="jButton2" alignment="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -121,11 +122,13 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="jButton2" min="-2" pref="38" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   <Component id="botonAgregar" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="199" max="32767" attributes="0"/>
+                  <EmptySpace pref="233" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -165,14 +168,23 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\TheHu\Desktop\Botones_Proyecto\botonModificar.png"/>
-            </Property>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton2">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\angel\Documents\GitHub\Horario-de-Clases\Iconos\descarga.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="jButton2"/>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

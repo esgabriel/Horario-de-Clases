@@ -11,8 +11,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -184,6 +182,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
                 "Hora", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"
             }
         ));
+        tablaHorario.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaHorario);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 550, 210));
@@ -205,6 +204,16 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         // TODO add your handling code here:
+        boxTodosLosDias.setSelected(false);
+        boxLunes.setSelected(false);
+        boxMartes.setSelected(false);
+        boxMiercoles.setSelected(false);
+        boxJueves.setSelected(false);
+        boxViernes.setSelected(false);
+        campoEE.setText("");
+        campoDocente.setText("");
+        campoHora.setText("");
+        campoSalon.setText("");
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void boxMiercolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMiercolesActionPerformed
@@ -334,7 +343,9 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
             String experienciaEducativa=campoEE.getText();
             Archivo archivo=new Archivo();
             String profesor = archivo.buscarRegistro(experienciaEducativa, "ExperienciasEducativas.txt");
-            campoDocente.setText(profesor.split("/")[1]);
+            if (!profesor.equalsIgnoreCase("")) {
+                campoDocente.setText(profesor.split("/")[1]);
+            }
         }else{
             JOptionPane.showMessageDialog(this, "Error, ingrese una experiencia educativa primero","Experiencia educativa",JOptionPane.ERROR_MESSAGE);
         }
