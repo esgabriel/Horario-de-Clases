@@ -36,7 +36,7 @@ public class HorarioDeClases {
             if (opcion.equals("1")) {
                 System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                 System.out.println("Agregar experiencia educativa al horario: ");
-                horario.agregarHorario();
+                //horario.agregarHorario();
             }
             if (opcion.equals("2")) {
                 System.out.println("~~Metodo en construccion~~");

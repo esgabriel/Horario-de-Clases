@@ -7,19 +7,16 @@ package horariodeclases;
 
 import java.io.*;
 
-
 /**
  *
  * @author TheHu
  */
-public class Archivo 
-{
-    
-    
-    public void leerArchivo (String archivo)
-  {
-      String cadena;
-      Horario horario = new Horario();
+public class Archivo {
+
+    public String[] leerArchivo(String archivo) {
+        String cadena, textoSalida="";
+        String[] salida = {};
+        Horario horario = new Horario();
         FileReader abrirArchivo = null; //Abrir archivo
         BufferedReader leerArchivo = null; //Leer archivo
 
@@ -29,8 +26,9 @@ public class Archivo
 
             try {
                 while ((cadena = leerArchivo.readLine()) != null) {
-                    horario.crearFormatoHorario(cadena);
+                    textoSalida += cadena+"&";
                 }
+                salida=textoSalida.split("&");
             } catch (IOException errorLectura) {
                 System.out.println("Error de lectura");
             }
@@ -45,11 +43,10 @@ public class Archivo
                 System.out.println("Error al cerrar archivo de texto");
             }
         }
-  }
-    
-    
-  public void añadirRegistro (String nombreArchivo, String registro)
-  {
+        return salida;
+    }
+
+    public void agregarRegistro(String nombreArchivo, String registro) {
         FileWriter abrirArchivo = null; //Abrir el archivo
         PrintWriter escribirArchivo = null; //Escribir en el archivo
 
@@ -69,13 +66,12 @@ public class Archivo
                 System.out.println("Error al cerrar el archivo");
             }
         }
-    
-  }
-  
-  public void buscarRegistro(String datoBuscado, String archivo)
-  {
-     String cadena;
-      Horario horario = new Horario();
+
+    }
+
+    public void buscarRegistro(String datoBuscado, String archivo) {
+        String cadena;
+        Horario horario = new Horario();
         FileReader abrirArchivo = null; //Abrir archivo
         BufferedReader leerArchivo = null; //Leer archivo
 
@@ -85,7 +81,7 @@ public class Archivo
 
             try {
                 while ((cadena = leerArchivo.readLine()) != null) {
-                    horario.crearFormatoHorario(cadena);
+                   //s horario.crearFormatoHorario(cadena);
                 }
             } catch (IOException errorLectura) {
                 System.out.println("Error de lectura");
@@ -100,14 +96,88 @@ public class Archivo
             } catch (Exception errorCierre) {
                 System.out.println("Error al cerrar archivo de texto");
             }
-        }  
-  }
-  
-  public void borrarRegistro(){
-      
-  }
-  
-  public boolean verificarHora(String hora, String dia){
+        }
+    }
+
+    public void modificarTexto(String archivo, String texto) {
+        String cadena;
+        FileReader fr = null;
+        BufferedReader br = null;
+
+        try {
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+            FileWriter fichero = null;
+            PrintWriter pw = null;
+            try {
+                fichero = new FileWriter("Temporal.txt");
+                pw = new PrintWriter(fichero);
+                try {
+                    boolean eleccion = false;
+                    while ((cadena = br.readLine()) != null) {
+                        if (cadena.split("/")[0].equals(texto.split("/")[0])) {
+                            eleccion = true;
+
+                            String arreglo1[] = cadena.split("/");
+                            String arreglo2[] = texto.split("/");
+                            String cadenaFinal = arreglo1[0] + "/";
+
+                            if (arreglo1.length == 2) {
+                                pw.println(cadena);
+                            } else {
+                                for (int i = 1; i < arreglo1.length; i++) {
+                                    if (arreglo1[i].equals(" ")) {
+                                        arreglo1[i] = arreglo2[i];
+                                    }
+                                    cadenaFinal += arreglo1[i]+"/";
+                                    /*if (i == arreglo1.length - 1) {
+                                        cadenaFinal += arreglo1[i];
+                                    } else {
+                                        cadenaFinal += arreglo1[i] + "/";
+                                    }*/
+                                }
+                            }
+                            System.out.println(cadenaFinal);
+                            pw.println(cadenaFinal);
+                        } else {
+                            pw.println(cadena);
+                        }
+                    }
+                    if (!eleccion) {
+                        pw.println(texto);
+                    }
+                } catch (IOException e2) {
+                    System.out.println("Error de lectura");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (null != fichero) {
+                        fichero.close();
+                    }
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                }
+            }
+        } catch (FileNotFoundException e2) {
+            System.out.println("Archivo no encontrado");
+        } finally {
+            try {
+                if (fr != null) {
+                    fr.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+        File archivo1 = new File(archivo);
+        File archivo2 = new File("Temporal.txt");
+        archivo1.delete();
+        archivo2.renameTo(archivo1);
+    }
+
+    public boolean verificarHora(String hora, String dia) {
 
         String cadena;
         boolean disponibilidad = true;
@@ -120,11 +190,11 @@ public class Archivo
 
             try {
                 while ((cadena = leerArchivo.readLine()) != null) {
-                    String horaTexto=hora+":00";
+                    String horaTexto = hora + ":00";
                     if (cadena.split("/")[0].equals(horaTexto)) {
                         String diaSemana[] = dia.split(",");
                         String horario[] = cadena.split("/");
-                        
+                        System.out.println(diaSemana.length);
                         for (int i = 0; i < diaSemana.length; i++) {
                             // 5 / Mate / 
                             if (diaSemana[i].equalsIgnoreCase("Lunes")) {
@@ -156,7 +226,7 @@ public class Archivo
                                     disponibilidad = false;
                                     break;
                                 }
-                            }                           
+                            }
                         }
                     }
                 }
@@ -173,8 +243,8 @@ public class Archivo
             } catch (Exception errorCierre) {
                 System.out.println("Error al cerrar archivo de texto");
             }
-        }  
+        }
         return disponibilidad;
     }
-          
+
 }

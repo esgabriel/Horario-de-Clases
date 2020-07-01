@@ -6,6 +6,8 @@
 package InterfazDeUsuario;
 
 import horariodeclases.Archivo;
+import horariodeclases.Horario;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,13 +21,13 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
      * Creates new form AgregarExperienciaEducativaPrueba
      */
     public AgregarExperienciaEducativa() {
-       
+
         initComponents();
-        
-        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
-        BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
+
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null);
-        
+
     }
 
     /**
@@ -55,6 +57,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         boxTodosLosDias = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaHorario = new javax.swing.JTable();
+        hola = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1040, 580));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -149,6 +152,14 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 550, 123));
 
+        hola.setText("jButton3");
+        hola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                holaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(hola, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -161,7 +172,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_boxMiercolesActionPerformed
 
     private void boxLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxLunesActionPerformed
-         // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_boxLunesActionPerformed
 
     private void campoHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoHoraActionPerformed
@@ -169,67 +180,89 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campoHoraActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
-   
+
         if (!campoEE.getText().equals("")) {
             if (!campoHora.getText().equals("")) {
                 if (!campoSalon.getText().equals("")) {
                     if (!campoDocente.getText().equals("")) {
-                       if (boxLunes.isSelected() || boxMartes.isSelected() || boxMiercoles.isSelected() || boxJueves.isSelected() || boxViernes.isSelected()) {
-                             Archivo archivo = new Archivo();
-                             String boxSeleccionados = "";
-                             if (boxTodosLosDias.isSelected()) {
-                               boxSeleccionados = "Lunes,Martes,Miercoles,Jueves,Viernes";
-                           }
-                             else{
-                                 if (boxLunes.isSelected()) {
-                                     boxSeleccionados = "Lunes";
-                                 }
-                                 if(boxMartes.isSelected()){
-                                     boxSeleccionados = ",Martes";
-                                 }
-                                 if (boxMiercoles.isSelected()) {
-                                     boxSeleccionados = ",Miercoles";
-                                 }
-                                 if (boxJueves.isSelected()) {
-                                     boxSeleccionados = ",Jueves";
-                                 }
-                                 if (boxViernes.isSelected()) {
-                                     boxSeleccionados = ", Viernes";
-                                 }
-                             }
-                             //archivo.verificarHora(campoHora.getText(), )
+                        if (boxLunes.isSelected() || boxMartes.isSelected() || boxMiercoles.isSelected() || boxJueves.isSelected() || boxViernes.isSelected()) {
+                            Archivo archivo = new Archivo();
+                            String boxSeleccionados = "";
+                            if (boxTodosLosDias.isSelected()) {
+                                boxSeleccionados = "Lunes,Martes,Miercoles,Jueves,Viernes";
+                            } else {
+                                if (boxLunes.isSelected()) {
+                                    boxSeleccionados = "Lunes";
+                                }
+                                if (boxMartes.isSelected()) {
+                                    boxSeleccionados = ",Martes";
+                                }
+                                if (boxMiercoles.isSelected()) {
+                                    boxSeleccionados = ",Miercoles";
+                                }
+                                if (boxJueves.isSelected()) {
+                                    boxSeleccionados = ",Jueves";
+                                }
+                                if (boxViernes.isSelected()) {
+                                    boxSeleccionados = ",Viernes";
+                                }
+                            }
+
+                            if (archivo.verificarHora(campoHora.getText(), boxSeleccionados)) {
+                                Horario horario = new Horario();
+                                archivo.modificarTexto("ExperienciasEducativas.txt", campoEE.getText() + "/" + campoDocente.getText());
+                                String horarioCompleto = horario.crearFormatoRegistro(campoEE.getText(), campoHora.getText(), boxSeleccionados, campoSalon.getText());
+                                System.out.println(horarioCompleto);
+                                archivo.modificarTexto("Horario.txt", horarioCompleto);
+                            } else {
+                                JOptionPane.showMessageDialog(this, "La hora y día ingresados No se encuentran disponibles");
+                            }
+                        } else {
+                            System.out.println("No se ha seleccionado ninguno de los Días.");
                         }
-                       else{
-                           System.out.println("No se ha seleccionado ninguno de los Días.");
-                       }
-                    }
-                    else{
+                    } else {
                         System.out.println("No se ha ingresado el nombre del Docente.");
-                    }    
-                }
-                else{
+                    }
+                } else {
                     System.out.println("No se ha ingresado el número de Salón.");
                 }
-            }
-            else{
+            } else {
                 System.out.println("No se ha  ingresado la hora de Clase.");
             }
-        }
-        else{
+        } else {
             System.out.println("No se ha ingresado el nombre de la Experiencia Educativa.");
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void campoEEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEEActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoEEActionPerformed
 
+    private void actualizarTabla()
+    {
+      DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
+    }
+    
     private void campoDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDocenteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoDocenteActionPerformed
+
+    private void holaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_holaActionPerformed
+
+        DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
+        Archivo archivito = new Archivo();
+        String cadena[] = archivito.leerArchivo("Horario.txt");
+        
+        formatoHorario.setRowCount(0);
+        
+        for(int i=0; i<cadena.length; i++)
+        {
+            formatoHorario.addRow(cadena[i].split("/"));
+        }
+        
+        
+    }//GEN-LAST:event_holaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -243,6 +276,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     private javax.swing.JTextField campoEE;
     private javax.swing.JTextField campoHora;
     private javax.swing.JTextField campoSalon;
+    private javax.swing.JButton hola;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
