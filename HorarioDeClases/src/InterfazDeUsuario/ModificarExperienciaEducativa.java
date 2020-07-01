@@ -11,14 +11,13 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  *
  * @author TheHu
  */
-public class Inicio extends javax.swing.JInternalFrame {
+public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Inicio
+     * Creates new form ModificarExperienciaEducativa
      */
-    public Inicio() {
+    public ModificarExperienciaEducativa() {
         initComponents();
-        
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
@@ -35,27 +34,23 @@ public class Inicio extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1020, 580));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 48)); // NOI18N
-        jLabel1.setText("MiUV");
+        jLabel1.setText("Modificar Experiencia Educativa");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(421, 421, 421)
+                .addGap(308, 308, 308)
                 .addComponent(jLabel1)
-                .addContainerGap(451, Short.MAX_VALUE))
+                .addContainerGap(542, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(198, 198, 198)
+                .addGap(70, 70, 70)
                 .addComponent(jLabel1)
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(466, Short.MAX_VALUE))
         );
 
         pack();

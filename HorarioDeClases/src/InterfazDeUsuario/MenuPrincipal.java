@@ -35,8 +35,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        botonAgregar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        botonAgregar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,20 +45,38 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jDesktopPane1.setPreferredSize(new java.awt.Dimension(1040, 580));
+        jDesktopPane1.setPreferredSize(new java.awt.Dimension(1020, 580));
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1040, Short.MAX_VALUE)
+            .addGap(0, 1020, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 580, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 1040, 580));
+        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 1020, 580));
+
+        botonEliminar.setBackground(new java.awt.Color(51, 204, 0));
+        botonEliminar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        botonEliminar.setText("Eliminar");
+        botonEliminar.setBorderPainted(false);
+        botonEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonEliminar.setMaximumSize(new java.awt.Dimension(1123, 31));
+        botonEliminar.setRequestFocusEnabled(false);
+        botonEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonEliminarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 180, -1));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
         botonAgregar.setBackground(new java.awt.Color(0, 204, 0));
         botonAgregar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
@@ -68,6 +87,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botonAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonAgregar.setMaximumSize(new java.awt.Dimension(160, 23));
         botonAgregar.setPreferredSize(new java.awt.Dimension(160, 23));
+        botonAgregar.setRequestFocusEnabled(false);
         botonAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonAgregarMouseClicked(evt);
@@ -78,27 +98,39 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 botonAgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 123, 45));
 
-        botonEliminar.setBackground(new java.awt.Color(51, 204, 0));
-        botonEliminar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        botonEliminar.setText("Eliminar");
-        botonEliminar.setBorderPainted(false);
-        botonEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonEliminar.setMaximumSize(new java.awt.Dimension(1123, 31));
-        botonEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonEliminarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 160, -1));
-
-        jButton1.setText("Modificar");
-        jButton1.setBorder(null);
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\TheHu\\Desktop\\Botones_Proyecto\\botonModificar.png")); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 110, 45));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 5, Short.MAX_VALUE))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(167, 167, 167)
+                .addComponent(jButton1)
+                .addContainerGap(199, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 190, 600));
 
         pack();
         setLocationRelativeTo(null);
@@ -119,6 +151,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonAgregarActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        jDesktopPane1.removeAll();
+        ModificarExperienciaEducativa modificarExperienciaEducativa = new ModificarExperienciaEducativa();
+        jDesktopPane1.add(modificarExperienciaEducativa).setVisible(true);
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -161,6 +199,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton jButton1;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
     

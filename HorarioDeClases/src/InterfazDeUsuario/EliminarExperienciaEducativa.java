@@ -37,11 +37,12 @@ public class EliminarExperienciaEducativa extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(1040, 580));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1020, 580));
 
         jLabel1.setText("Eliminar Experiencia Educativa");
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Eliminar");
 
         jButton2.setText("jButton2");
 
@@ -59,7 +60,7 @@ public class EliminarExperienciaEducativa extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(283, 283, 283)
                         .addComponent(jLabel1)))
-                .addContainerGap(471, Short.MAX_VALUE))
+                .addContainerGap(451, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

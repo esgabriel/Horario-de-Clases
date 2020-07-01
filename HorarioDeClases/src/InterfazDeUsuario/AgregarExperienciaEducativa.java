@@ -63,7 +63,8 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaEE = new javax.swing.JTable();
 
-        setPreferredSize(new java.awt.Dimension(1040, 580));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1020, 580));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         boxViernes.setText("Viernes");
