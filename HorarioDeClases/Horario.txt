@@ -1,4 +1,5 @@
-5:00/Matematicas (1)/Matematicas Discretas(5)/Matematicas (1)/Matematicas Discretas(5)/Matematicas (1)/
-6:00/Programacion (6)/Danza(3)/Canto(9)/Programacion (6)/HolaMundo3(4)/
-10:00/Sistemas (5)/Natacion(4)/Matar(5)/Matar(5)/Sistemas (5)/
-15:00/Ingles (2)/ / / /Ingles (2)/
+5:00/Matematicas(1)/Matematicas Discretas(5)/Matematicas(1)/Matematicas Discretas(5)/Matematicas(1)/
+6:00/Programacion(6)/ / /Programacion(6)/Redes(1)/
+10:00/Sistemas(5)/ / / /Sistemas(5)/
+15:00/Ingles(2)/ / / /Ingles(2)/
+9:00/ /Principios de construccion(1)/ /Principios de construccion(1)/ /

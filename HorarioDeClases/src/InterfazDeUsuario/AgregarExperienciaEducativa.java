@@ -7,9 +7,12 @@ package InterfazDeUsuario;
 
 import horariodeclases.Archivo;
 import horariodeclases.Horario;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -23,7 +26,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     public AgregarExperienciaEducativa() {
 
         initComponents();
-
+        actualizarTabla();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null);
@@ -40,9 +43,9 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         boxViernes = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        botonAgregar = new javax.swing.JButton();
         campoHora = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        botonCancelar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         campoEE = new javax.swing.JTextField();
         campoSalon = new javax.swing.JTextField();
@@ -57,63 +60,80 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         boxTodosLosDias = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaHorario = new javax.swing.JTable();
-        hola = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaEE = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(1040, 580));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         boxViernes.setText("Viernes");
+        boxViernes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxViernesActionPerformed(evt);
+            }
+        });
         getContentPane().add(boxViernes, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, -1, -1));
 
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonAgregar.setText("Agregar");
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonAgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 424, -1, -1));
+        getContentPane().add(botonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 424, -1, -1));
 
-        campoHora.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoHoraActionPerformed(evt);
+        campoHora.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoHoraKeyTyped(evt);
             }
         });
-        getContentPane().add(campoHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 72, -1));
+        getContentPane().add(campoHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 70, -1));
 
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botonCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 424, -1, -1));
+        getContentPane().add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 424, -1, -1));
 
         jLabel3.setText("Hora");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
-        campoEE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoEEActionPerformed(evt);
+        campoEE.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoEEKeyTyped(evt);
             }
         });
         getContentPane().add(campoEE, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 168, 29));
-        getContentPane().add(campoSalon, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 72, -1));
+
+        campoSalon.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoSalonKeyTyped(evt);
+            }
+        });
+        getContentPane().add(campoSalon, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 72, -1));
 
         jLabel1.setText("Experiencia Educativa");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         jLabel4.setText("Salon");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 122, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, -1, -1));
 
         jLabel2.setText("Docente");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 181, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
-        campoDocente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoDocenteActionPerformed(evt);
+        campoDocente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                campoDocenteMouseClicked(evt);
             }
         });
-        getContentPane().add(campoDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 181, 63, -1));
+        campoDocente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoDocenteKeyTyped(evt);
+            }
+        });
+        getContentPane().add(campoDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 180, -1));
 
         boxMiercoles.setText("Miercoles");
         boxMiercoles.addActionListener(new java.awt.event.ActionListener() {
@@ -124,9 +144,19 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         getContentPane().add(boxMiercoles, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
 
         boxJueves.setText("Jueves");
+        boxJueves.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxJuevesActionPerformed(evt);
+            }
+        });
         getContentPane().add(boxJueves, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
 
         boxMartes.setText("Martes");
+        boxMartes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxMartesActionPerformed(evt);
+            }
+        });
         getContentPane().add(boxMartes, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
 
         boxLunes.setText("Lunes");
@@ -138,7 +168,12 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         getContentPane().add(boxLunes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, -1, -1));
 
         boxTodosLosDias.setText("Todos los días");
-        getContentPane().add(boxTodosLosDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
+        boxTodosLosDias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxTodosLosDiasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boxTodosLosDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, -1, -1));
 
         tablaHorario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -150,36 +185,50 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tablaHorario);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 550, 123));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 550, 210));
 
-        hola.setText("jButton3");
-        hola.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                holaActionPerformed(evt);
+        tablaEE.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "Experiencia Educativa", "Docente"
             }
-        });
-        getContentPane().add(hola, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, -1, -1));
+        ));
+        jScrollPane2.setViewportView(tablaEE);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 280, 460, 240));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void boxMiercolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMiercolesActionPerformed
         // TODO add your handling code here:
+        if (!boxMiercoles.isSelected()) {
+            boxTodosLosDias.setSelected(false);
+        } else {
+            if (boxLunes.isSelected() && boxMartes.isSelected() && boxViernes.isSelected() && boxJueves.isSelected()) {
+                boxTodosLosDias.setSelected(true);
+            }
+        }
     }//GEN-LAST:event_boxMiercolesActionPerformed
 
     private void boxLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxLunesActionPerformed
         // TODO add your handling code here:
+        if (!boxLunes.isSelected()) {
+            boxTodosLosDias.setSelected(false);
+        } else {
+            if (boxViernes.isSelected() && boxMartes.isSelected() && boxMiercoles.isSelected() && boxJueves.isSelected()) {
+                boxTodosLosDias.setSelected(true);
+            }
+        }
     }//GEN-LAST:event_boxLunesActionPerformed
 
-    private void campoHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoHoraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoHoraActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
 
         if (!campoEE.getText().equals("")) {
             if (!campoHora.getText().equals("")) {
@@ -192,19 +241,19 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
                                 boxSeleccionados = "Lunes,Martes,Miercoles,Jueves,Viernes";
                             } else {
                                 if (boxLunes.isSelected()) {
-                                    boxSeleccionados = "Lunes";
+                                    boxSeleccionados += "Lunes";
                                 }
                                 if (boxMartes.isSelected()) {
-                                    boxSeleccionados = ",Martes";
+                                    boxSeleccionados += ",Martes";
                                 }
                                 if (boxMiercoles.isSelected()) {
-                                    boxSeleccionados = ",Miercoles";
+                                    boxSeleccionados += ",Miercoles";
                                 }
                                 if (boxJueves.isSelected()) {
-                                    boxSeleccionados = ",Jueves";
+                                    boxSeleccionados += ",Jueves";
                                 }
                                 if (boxViernes.isSelected()) {
-                                    boxSeleccionados = ",Viernes";
+                                    boxSeleccionados += ",Viernes";
                                 }
                             }
 
@@ -214,58 +263,151 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
                                 String horarioCompleto = horario.crearFormatoRegistro(campoEE.getText(), campoHora.getText(), boxSeleccionados, campoSalon.getText());
                                 System.out.println(horarioCompleto);
                                 archivo.modificarTexto("Horario.txt", horarioCompleto);
+                                actualizarTabla();
                             } else {
                                 JOptionPane.showMessageDialog(this, "La hora y día ingresados No se encuentran disponibles");
                             }
                         } else {
-                            System.out.println("No se ha seleccionado ninguno de los Días.");
+                            JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguno de los Días.","Error",JOptionPane.ERROR_MESSAGE);
+                            //System.out.println("No se ha seleccionado ninguno de los Días.");
                         }
                     } else {
-                        System.out.println("No se ha ingresado el nombre del Docente.");
+                        JOptionPane.showMessageDialog(this, "No se ha ingresado el nombre del Docente.","Error",JOptionPane.ERROR_MESSAGE);
+                        //System.out.println("No se ha ingresado el nombre del Docente.");
                     }
                 } else {
-                    System.out.println("No se ha ingresado el número de Salón.");
+                    JOptionPane.showMessageDialog(this, "No se ha ingresado el número de Salón.","Error",JOptionPane.ERROR_MESSAGE);
+                    //System.out.println("No se ha ingresado el número de Salón.");
                 }
             } else {
-                System.out.println("No se ha  ingresado la hora de Clase.");
+                JOptionPane.showMessageDialog(this, "No se ha  ingresado la hora de Clase.","Error",JOptionPane.ERROR_MESSAGE);
+                //System.out.println("No se ha  ingresado la hora de Clase.");
             }
         } else {
-            System.out.println("No se ha ingresado el nombre de la Experiencia Educativa.");
+            JOptionPane.showMessageDialog(this, "No se ha ingresado el nombre de la Experiencia Educativa.","Error",JOptionPane.ERROR_MESSAGE);
+            //System.out.println("No se ha ingresado el nombre de la Experiencia Educativa.");
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonAgregarActionPerformed
 
-    private void campoEEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEEActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoEEActionPerformed
-
-    private void actualizarTabla()
-    {
-      DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
+    private void actualizarTabla() {
+        DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
+        DefaultTableModel formatoEE = (DefaultTableModel) tablaEE.getModel();
+        Archivo archivito = new Archivo();
+        String horario[] = archivito.leerArchivo("Horario.txt");
+        String experienciasEducativas[] = archivito.leerArchivo("ExperienciasEducativas.txt");
+        formatoHorario.setRowCount(0);
+        formatoEE.setRowCount(0);
+        for (int i = 0; i < horario.length; i++) {
+            formatoHorario.addRow(horario[i].split("/"));
+        }
+        for (int i = 0; i < experienciasEducativas.length; i++) {
+            formatoEE.addRow(experienciasEducativas[i].split("/"));
+        }
     }
     
-    private void campoDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDocenteActionPerformed
+    private String[] ordenamiento(String []horario){
+        return null;
+    }
+
+    private void boxTodosLosDiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTodosLosDiasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoDocenteActionPerformed
-
-    private void holaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_holaActionPerformed
-
-        DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
-        Archivo archivito = new Archivo();
-        String cadena[] = archivito.leerArchivo("Horario.txt");
-        
-        formatoHorario.setRowCount(0);
-        
-        for(int i=0; i<cadena.length; i++)
-        {
-            formatoHorario.addRow(cadena[i].split("/"));
+        if (boxTodosLosDias.isSelected()) {
+            boxLunes.setSelected(true);
+            boxMartes.setSelected(true);
+            boxMiercoles.setSelected(true);
+            boxJueves.setSelected(true);
+            boxViernes.setSelected(true);
+        }else{
+            boxLunes.setSelected(false);
+            boxMartes.setSelected(false);
+            boxMiercoles.setSelected(false);
+            boxJueves.setSelected(false);
+            boxViernes.setSelected(false);
         }
-        
-        
-    }//GEN-LAST:event_holaActionPerformed
+    }//GEN-LAST:event_boxTodosLosDiasActionPerformed
+
+    private void campoDocenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoDocenteMouseClicked
+        // TODO add your handling code here:
+        if (!campoEE.getText().equals("")) {
+            String experienciaEducativa=campoEE.getText();
+            Archivo archivo=new Archivo();
+            String profesor = archivo.buscarRegistro(experienciaEducativa, "ExperienciasEducativas.txt");
+            campoDocente.setText(profesor.split("/")[1]);
+        }else{
+            JOptionPane.showMessageDialog(this, "Error, ingrese una experiencia educativa primero","Experiencia educativa",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_campoDocenteMouseClicked
+
+    private void boxMartesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMartesActionPerformed
+        // TODO add your handling code here:
+        if (!boxMartes.isSelected()) {
+            boxTodosLosDias.setSelected(false);
+        } else {
+            if (boxLunes.isSelected() && boxViernes.isSelected() && boxMiercoles.isSelected() && boxJueves.isSelected()) {
+                boxTodosLosDias.setSelected(true);
+            }
+        }
+    }//GEN-LAST:event_boxMartesActionPerformed
+
+    private void boxJuevesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxJuevesActionPerformed
+        // TODO add your handling code here:
+        if (!boxJueves.isSelected()) {
+            boxTodosLosDias.setSelected(false);
+        } else {
+            if (boxLunes.isSelected() && boxMartes.isSelected() && boxMiercoles.isSelected() && boxViernes.isSelected()) {
+                boxTodosLosDias.setSelected(true);
+            }
+        }
+    }//GEN-LAST:event_boxJuevesActionPerformed
+
+    private void boxViernesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxViernesActionPerformed
+        // TODO add your handling code here:
+        if (!boxViernes.isSelected()) {
+            boxTodosLosDias.setSelected(false);
+        } else {
+            if (boxLunes.isSelected() && boxMartes.isSelected() && boxMiercoles.isSelected() && boxJueves.isSelected()) {
+                boxTodosLosDias.setSelected(true);
+            }
+        }
+    }//GEN-LAST:event_boxViernesActionPerformed
+
+    private void campoHoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoHoraKeyTyped
+        // TODO add your handling code here:
+        char caracter=evt.getKeyChar();
+        if (!Character.isDigit(caracter)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoHoraKeyTyped
+
+    private void campoSalonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoSalonKeyTyped
+        // TODO add your handling code here:
+        char caracter=evt.getKeyChar();
+        if (!Character.isDigit(caracter)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoSalonKeyTyped
+
+    private void campoEEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoEEKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if (!Character.isLetter(caracter) && caracter != KeyEvent.VK_SPACE) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoEEKeyTyped
+
+    private void campoDocenteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDocenteKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if (!Character.isLetter(caracter) && caracter != KeyEvent.VK_SPACE) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoDocenteKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAgregar;
+    private javax.swing.JButton botonCancelar;
     private javax.swing.JCheckBox boxJueves;
     private javax.swing.JCheckBox boxLunes;
     private javax.swing.JCheckBox boxMartes;
@@ -276,14 +418,13 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     private javax.swing.JTextField campoEE;
     private javax.swing.JTextField campoHora;
     private javax.swing.JTextField campoSalon;
-    private javax.swing.JButton hola;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tablaEE;
     private javax.swing.JTable tablaHorario;
     // End of variables declaration//GEN-END:variables
 }

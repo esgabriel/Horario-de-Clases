@@ -69,8 +69,8 @@ public class Archivo {
 
     }
 
-    public void buscarRegistro(String datoBuscado, String archivo) {
-        String cadena;
+    public String buscarRegistro(String datoBuscado, String archivo) {
+        String cadena, registro="";
         Horario horario = new Horario();
         FileReader abrirArchivo = null; //Abrir archivo
         BufferedReader leerArchivo = null; //Leer archivo
@@ -81,7 +81,9 @@ public class Archivo {
 
             try {
                 while ((cadena = leerArchivo.readLine()) != null) {
-                   //s horario.crearFormatoHorario(cadena);
+                    if (cadena.split("/")[0].equalsIgnoreCase(datoBuscado)) {
+                        registro=cadena;
+                    }
                 }
             } catch (IOException errorLectura) {
                 System.out.println("Error de lectura");
@@ -97,6 +99,7 @@ public class Archivo {
                 System.out.println("Error al cerrar archivo de texto");
             }
         }
+        return registro;
     }
 
     public void modificarTexto(String archivo, String texto) {
@@ -115,7 +118,7 @@ public class Archivo {
                 try {
                     boolean eleccion = false;
                     while ((cadena = br.readLine()) != null) {
-                        if (cadena.split("/")[0].equals(texto.split("/")[0])) {
+                        if (cadena.split("/")[0].equalsIgnoreCase(texto.split("/")[0])) {
                             eleccion = true;
 
                             String arreglo1[] = cadena.split("/");
