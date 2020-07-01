@@ -132,6 +132,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         jLabel2.setText("Docente");
 
         campoDocente.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        campoDocente.setText(" ");
         campoDocente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 campoDocenteMouseClicked(evt);
@@ -364,36 +365,34 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
                                     boxSeleccionados += ",Viernes";
                                 }
                             }
-
-                            if (archivo.verificarHora(campoHora.getText(), boxSeleccionados)) {
-                                Horario horario = new Horario();
-                                archivo.modificarTexto("ExperienciasEducativas.txt", campoEE.getText() + "/" + campoDocente.getText());
-                                String horarioCompleto = horario.crearFormatoRegistro(campoEE.getText(), campoHora.getText(), boxSeleccionados, campoSalon.getText());
-                                System.out.println(horarioCompleto);
-                                archivo.modificarTexto("Horario.txt", horarioCompleto);
-                                actualizarTabla();
+                            int horaIngresada = Integer.parseInt(campoHora.getText());
+                            if (horaIngresada >= 8 && horaIngresada <= 20) {
+                                if (archivo.verificarHora(campoHora.getText(), boxSeleccionados)) {
+                                    Horario horario = new Horario();
+                                    archivo.modificarTexto("ExperienciasEducativas.txt", campoEE.getText() + "/" + campoDocente.getText());
+                                    String horarioCompleto = horario.crearFormatoRegistro(campoEE.getText(), campoHora.getText(), boxSeleccionados, campoSalon.getText());
+                                    archivo.modificarTexto("Horario.txt", horarioCompleto);
+                                    actualizarTabla();
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "La hora y día ingresados No se encuentran disponibles");
+                                }
                             } else {
-                                JOptionPane.showMessageDialog(this, "La hora y día ingresados No se encuentran disponibles");
+                                JOptionPane.showMessageDialog(this, "Error, hora fuera de rango de clases (8 - 20 hrs)", "Hora ingresada", JOptionPane.ERROR_MESSAGE);
                             }
                         } else {
-                            JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguno de los Días.","Error",JOptionPane.ERROR_MESSAGE);
-                            //System.out.println("No se ha seleccionado ninguno de los Días.");
+                            JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguno de los Días.", "Error", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(this, "No se ha ingresado el nombre del Docente.","Error",JOptionPane.ERROR_MESSAGE);
-                        //System.out.println("No se ha ingresado el nombre del Docente.");
+                        JOptionPane.showMessageDialog(this, "No se ha ingresado el nombre del Docente.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "No se ha ingresado el número de Salón.","Error",JOptionPane.ERROR_MESSAGE);
-                    //System.out.println("No se ha ingresado el número de Salón.");
+                    JOptionPane.showMessageDialog(this, "No se ha ingresado el número de Salón.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "No se ha  ingresado la hora de Clase.","Error",JOptionPane.ERROR_MESSAGE);
-                //System.out.println("No se ha  ingresado la hora de Clase.");
+                JOptionPane.showMessageDialog(this, "No se ha  ingresado la hora de Clase.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "No se ha ingresado el nombre de la Experiencia Educativa.","Error",JOptionPane.ERROR_MESSAGE);
-            //System.out.println("No se ha ingresado el nombre de la Experiencia Educativa.");
+            JOptionPane.showMessageDialog(this, "No se ha ingresado el nombre de la Experiencia Educativa.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_botonAgregarActionPerformed
@@ -406,16 +405,30 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         String experienciasEducativas[] = archivito.leerArchivo("ExperienciasEducativas.txt");
         formatoHorario.setRowCount(0);
         formatoEE.setRowCount(0);
+        String horarioOrdenado[] = ordenamiento(horario);
         for (int i = 0; i < horario.length; i++) {
-            formatoHorario.addRow(horario[i].split("/"));
+            formatoHorario.addRow(horarioOrdenado[i].split("/"));
         }
         for (int i = 0; i < experienciasEducativas.length; i++) {
             formatoEE.addRow(experienciasEducativas[i].split("/"));
         }
     }
-    
-    private String[] ordenamiento(String []horario){
-        return null;
+
+    private String[] ordenamiento(String[] horario) {
+        String cadenaOrdenada[] = new String[horario.length];
+        final int HORA_CLASE = 20;
+        int posicion = 0;
+        for (int i = 8; i <= HORA_CLASE; i++) {
+            for (int j = 0; j < horario.length; j++) {
+                int horaActual = Integer.parseInt(horario[j].split("/")[0].split(":")[0]);
+                if (horaActual == i) {
+                    cadenaOrdenada[posicion] = horario[j];
+                    posicion++;
+                    break;
+                }
+            }
+        }
+        return cadenaOrdenada;
     }
 
     private void boxTodosLosDiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTodosLosDiasActionPerformed
@@ -426,7 +439,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
             boxMiercoles.setSelected(true);
             boxJueves.setSelected(true);
             boxViernes.setSelected(true);
-        }else{
+        } else {
             boxLunes.setSelected(false);
             boxMartes.setSelected(false);
             boxMiercoles.setSelected(false);
@@ -438,14 +451,14 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     private void campoDocenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoDocenteMouseClicked
         // TODO add your handling code here:
         if (!campoEE.getText().equals("")) {
-            String experienciaEducativa=campoEE.getText();
-            Archivo archivo=new Archivo();
+            String experienciaEducativa = campoEE.getText();
+            Archivo archivo = new Archivo();
             String profesor = archivo.buscarRegistro(experienciaEducativa, "ExperienciasEducativas.txt");
             if (!profesor.equalsIgnoreCase("")) {
                 campoDocente.setText(profesor.split("/")[1]);
             }
-        }else{
-            JOptionPane.showMessageDialog(this, "Error, ingrese una experiencia educativa primero","Experiencia educativa",JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error, ingrese una experiencia educativa primero", "Experiencia educativa", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_campoDocenteMouseClicked
 
@@ -484,7 +497,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
 
     private void campoHoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoHoraKeyTyped
         // TODO add your handling code here:
-        char caracter=evt.getKeyChar();
+        char caracter = evt.getKeyChar();
         if (!Character.isDigit(caracter)) {
             evt.consume();
         }
@@ -492,7 +505,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
 
     private void campoSalonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoSalonKeyTyped
         // TODO add your handling code here:
-        char caracter=evt.getKeyChar();
+        char caracter = evt.getKeyChar();
         if (!Character.isDigit(caracter)) {
             evt.consume();
         }

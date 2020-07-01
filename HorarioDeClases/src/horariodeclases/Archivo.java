@@ -14,7 +14,7 @@ import java.io.*;
 public class Archivo {
 
     public String[] leerArchivo(String archivo) {
-        String cadena, textoSalida="";
+        String cadena, textoSalida = "";
         String[] salida = {};
         Horario horario = new Horario();
         FileReader abrirArchivo = null; //Abrir archivo
@@ -26,9 +26,9 @@ public class Archivo {
 
             try {
                 while ((cadena = leerArchivo.readLine()) != null) {
-                    textoSalida += cadena+"&";
+                    textoSalida += cadena + "&";
                 }
-                salida=textoSalida.split("&");
+                salida = textoSalida.split("&");
             } catch (IOException errorLectura) {
                 System.out.println("Error de lectura");
             }
@@ -70,7 +70,7 @@ public class Archivo {
     }
 
     public String buscarRegistro(String datoBuscado, String archivo) {
-        String cadena, registro="";
+        String cadena, registro = "";
         Horario horario = new Horario();
         FileReader abrirArchivo = null; //Abrir archivo
         BufferedReader leerArchivo = null; //Leer archivo
@@ -82,7 +82,7 @@ public class Archivo {
             try {
                 while ((cadena = leerArchivo.readLine()) != null) {
                     if (cadena.split("/")[0].equalsIgnoreCase(datoBuscado)) {
-                        registro=cadena;
+                        registro = cadena;
                     }
                 }
             } catch (IOException errorLectura) {
@@ -103,10 +103,10 @@ public class Archivo {
     }
 
     public void modificarTexto(String archivo, String texto) {
+        //Materias - - - Redes/Vergara
         String cadena;
         FileReader fr = null;
         BufferedReader br = null;
-
         try {
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
@@ -116,34 +116,38 @@ public class Archivo {
                 fichero = new FileWriter("Temporal.txt");
                 pw = new PrintWriter(fichero);
                 try {
+                    String arreglo1[] = {};
+                    String arreglo2[] = texto.split("/");
+                    
                     boolean eleccion = false;
                     while ((cadena = br.readLine()) != null) {
-                        if (cadena.split("/")[0].equalsIgnoreCase(texto.split("/")[0])) {
-                            eleccion = true;
-
-                            String arreglo1[] = cadena.split("/");
-                            String arreglo2[] = texto.split("/");
-                            String cadenaFinal = arreglo1[0] + "/";
-
-                            if (arreglo1.length == 2) {
+                        arreglo1 = cadena.split("/");
+                        //if (cadena.split("/")[0].equalsIgnoreCase(texto.split("/")[0])) {
+                        if (archivo.equals("ExperienciasEducativas.txt")) {
+                            if (texto.equalsIgnoreCase(arreglo1[0])) {
+                                eleccion = true;
                                 pw.println(cadena);
-                            } else {
+                            }
+                        } else {
+                            if (arreglo1[0].equalsIgnoreCase(arreglo2[0])) {
+                                String cadenaFinal = arreglo1[0] + "/";
+                                eleccion = true;
                                 for (int i = 1; i < arreglo1.length; i++) {
                                     if (arreglo1[i].equals(" ")) {
                                         arreglo1[i] = arreglo2[i];
                                     }
-                                    cadenaFinal += arreglo1[i]+"/";
+                                    cadenaFinal += arreglo1[i] + "/";
                                     /*if (i == arreglo1.length - 1) {
                                         cadenaFinal += arreglo1[i];
                                     } else {
                                         cadenaFinal += arreglo1[i] + "/";
                                     }*/
                                 }
+                                
+                                pw.println(cadenaFinal);
+                            } else {
+                                pw.println(cadena);
                             }
-                            System.out.println(cadenaFinal);
-                            pw.println(cadenaFinal);
-                        } else {
-                            pw.println(cadena);
                         }
                     }
                     if (!eleccion) {
@@ -197,7 +201,6 @@ public class Archivo {
                     if (cadena.split("/")[0].equals(horaTexto)) {
                         String diaSemana[] = dia.split(",");
                         String horario[] = cadena.split("/");
-                        System.out.println(diaSemana.length);
                         for (int i = 0; i < diaSemana.length; i++) {
                             // 5 / Mate / 
                             if (diaSemana[i].equalsIgnoreCase("Lunes")) {
