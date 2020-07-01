@@ -63,65 +63,75 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1020, 580));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        boxViernes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         boxViernes.setText("Viernes");
         boxViernes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxViernesActionPerformed(evt);
             }
         });
-        getContentPane().add(boxViernes, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, -1, -1));
 
+        botonAgregar.setBackground(new java.awt.Color(24, 82, 157));
+        botonAgregar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        botonAgregar.setForeground(new java.awt.Color(255, 255, 255));
         botonAgregar.setText("Agregar");
+        botonAgregar.setBorder(null);
+        botonAgregar.setBorderPainted(false);
+        botonAgregar.setRequestFocusEnabled(false);
         botonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 424, -1, -1));
 
+        campoHora.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         campoHora.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 campoHoraKeyTyped(evt);
             }
         });
-        getContentPane().add(campoHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 70, -1));
 
+        botonCancelar.setBackground(new java.awt.Color(24, 82, 157));
+        botonCancelar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        botonCancelar.setForeground(new java.awt.Color(255, 255, 255));
         botonCancelar.setText("Cancelar");
+        botonCancelar.setBorder(null);
+        botonCancelar.setBorderPainted(false);
+        botonCancelar.setRequestFocusEnabled(false);
         botonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 424, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel3.setText("Hora");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
+        campoEE.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         campoEE.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 campoEEKeyTyped(evt);
             }
         });
-        getContentPane().add(campoEE, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 168, 29));
 
+        campoSalon.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         campoSalon.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 campoSalonKeyTyped(evt);
             }
         });
-        getContentPane().add(campoSalon, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 72, -1));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel1.setText("Experiencia Educativa");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel4.setText("Salon");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel2.setText("Docente");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
+        campoDocente.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         campoDocente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 campoDocenteMouseClicked(evt);
@@ -132,47 +142,46 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
                 campoDocenteKeyTyped(evt);
             }
         });
-        getContentPane().add(campoDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 180, -1));
 
+        boxMiercoles.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         boxMiercoles.setText("Miercoles");
         boxMiercoles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxMiercolesActionPerformed(evt);
             }
         });
-        getContentPane().add(boxMiercoles, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
 
+        boxJueves.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         boxJueves.setText("Jueves");
         boxJueves.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxJuevesActionPerformed(evt);
             }
         });
-        getContentPane().add(boxJueves, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
 
+        boxMartes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         boxMartes.setText("Martes");
         boxMartes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxMartesActionPerformed(evt);
             }
         });
-        getContentPane().add(boxMartes, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
 
+        boxLunes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         boxLunes.setText("Lunes");
         boxLunes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxLunesActionPerformed(evt);
             }
         });
-        getContentPane().add(boxLunes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, -1, -1));
 
+        boxTodosLosDias.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         boxTodosLosDias.setText("Todos los días");
         boxTodosLosDias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxTodosLosDiasActionPerformed(evt);
             }
         });
-        getContentPane().add(boxTodosLosDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, -1, -1));
 
         tablaHorario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -185,8 +194,6 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         tablaHorario.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaHorario);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 550, 210));
-
         tablaEE.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null}
@@ -197,7 +204,98 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(tablaEE);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 280, 460, 240));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(boxLunes)
+                        .addGap(15, 15, 15)
+                        .addComponent(boxMartes)
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(boxTodosLosDias)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(boxMiercoles)
+                                .addGap(15, 15, 15)
+                                .addComponent(boxJueves)
+                                .addGap(18, 18, 18)
+                                .addComponent(boxViernes))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76)
+                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(campoEE, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(39, 39, 39)
+                                .addComponent(campoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addGap(39, 39, 39)
+                                .addComponent(campoSalon, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(51, 51, 51)
+                                .addComponent(campoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(campoEE, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel2)
+                            .addComponent(campoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(campoSalon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(campoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(65, 65, 65)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(boxTodosLosDias)
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(boxLunes)
+                            .addComponent(boxMartes)
+                            .addComponent(boxMiercoles)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(boxJueves)
+                                .addComponent(boxViernes)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
