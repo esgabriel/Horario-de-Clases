@@ -78,7 +78,7 @@ public class Archivo {
         return registro;
     }
 
-    public void modificarTexto(String archivo, String texto) {
+    public void agregarRegistro(String archivo, String texto) {
 
         String registroArchivo;
         FileReader abrirLecturaArchivo = null;
@@ -98,7 +98,7 @@ public class Archivo {
                     boolean registroRepetido = false;
                     while ((registroArchivo = leerArchivo.readLine()) != null) {
                         registro = registroArchivo.split("/");
-                        //if (cadena.split("/")[0].equalsIgnoreCase(texto.split("/")[0])) {
+
                         if (archivo.equals("ExperienciasEducativas.txt")) {
                             if (texto.equalsIgnoreCase(registro[0])) {
                                 registroRepetido = true;

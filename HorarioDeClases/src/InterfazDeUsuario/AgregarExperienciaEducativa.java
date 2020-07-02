@@ -370,9 +370,9 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
                             if (horaIngresada >= HORAENTRADA && horaIngresada <= HORASALIDA) {
                                 if (archivo.verificarHora(campoHora.getText(), boxSeleccionados)) {
                                     Horario horario = new Horario();
-                                    archivo.modificarTexto("ExperienciasEducativas.txt", campoEE.getText() + "/" + campoDocente.getText());
+                                    archivo.agregarRegistro("ExperienciasEducativas.txt", campoEE.getText() + "/" + campoDocente.getText());
                                     String horarioCompleto = horario.crearFormatoRegistro(campoEE.getText(), campoHora.getText(), boxSeleccionados, campoSalon.getText());
-                                    archivo.modificarTexto("Horario.txt", horarioCompleto);
+                                    archivo.agregarRegistro("Horario.txt", horarioCompleto);
                                     actualizarTabla();
                                 } else {
                                     JOptionPane.showMessageDialog(this, "La hora y día ingresados No se encuentran disponibles");
