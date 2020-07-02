@@ -220,6 +220,9 @@ public class Archivo {
      *
      * @param hora
      * @param dia
+     * @throws IOException Este error occure cuando no se puede leer el archivo
+     * @throws FileNotFoundException Este error ocurre cuando no se encuentra el archivo
+     * @throws Exception Este error ocurre cuando el archivo no puede cerrarse correctamente
      * @return disponibilidad
      * @version 0.1
      */
@@ -298,6 +301,10 @@ public class Archivo {
      * @param archivo
      * @param datoNuevo
      * @param vacio
+     * @throws IOException Este error ocurre cuando no se puede leer el archivo
+     * @throws Exception Este error ocurre cuando no se puede abrir el archivo
+     * @throws Exception Este error ocurre cuando no se puede cerrar el archivo
+     * @throws FileNotFoundException Este error ocurre cuando no se puede encontrar el archivo
      * @version 0.1
      */
     public void modificarRegistro(String archivo, String datoNuevo, boolean vacio) {
@@ -368,6 +375,9 @@ public class Archivo {
      * @param archivo
      * @param datoBuscado
      * @param opcion
+     * @throws IOException Este error ocurre cuando el archivo no se puede leer
+     * @throws FileNotFoundException Este error ocurre cuando no se encuentra el archivo
+     * @throws Exception Este error ocurre cuando no se puede cerrar el archivo
      * @return cadenaFinalEncontrada
      * @version 0.1
      */
@@ -415,7 +425,7 @@ public class Archivo {
             } catch (IOException errorLectura) {
                 System.out.println("Error de lectura");
             }
-        } catch (FileNotFoundException erprArchivoNoEncontrado) {
+        } catch (FileNotFoundException errorArchivoNoEncontrado) {
             System.out.println("Archivo no encontrado");
         } finally {
             try {
