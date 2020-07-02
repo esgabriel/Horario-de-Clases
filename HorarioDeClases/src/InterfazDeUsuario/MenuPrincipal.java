@@ -39,8 +39,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         botonEliminar = new javax.swing.JButton();
         botonAgregar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        botonModificar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        botonBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -75,11 +76,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 botonEliminarMouseClicked(evt);
             }
         });
-        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarActionPerformed(evt);
-            }
-        });
 
         botonAgregar.setBackground(new java.awt.Color(24, 82, 157));
         botonAgregar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
@@ -96,22 +92,35 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 botonAgregarMouseClicked(evt);
             }
         });
-        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAgregarActionPerformed(evt);
+
+        botonModificar.setBackground(new java.awt.Color(24, 82, 157));
+        botonModificar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        botonModificar.setForeground(new java.awt.Color(255, 255, 255));
+        botonModificar.setText("Modificar");
+        botonModificar.setBorder(null);
+        botonModificar.setBorderPainted(false);
+        botonModificar.setRequestFocusEnabled(false);
+        botonModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonModificarMouseClicked(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(24, 82, 157));
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Modificar");
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setRequestFocusEnabled(false);
-
         jLabel2.setFont(new java.awt.Font("Oswald", 1, 48)); // NOI18N
         jLabel2.setText("MiUV");
+
+        botonBuscar.setBackground(new java.awt.Color(24, 82, 157));
+        botonBuscar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        botonBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        botonBuscar.setText("Buscar");
+        botonBuscar.setBorder(null);
+        botonBuscar.setBorderPainted(false);
+        botonBuscar.setRequestFocusEnabled(false);
+        botonBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonBuscarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,10 +132,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addComponent(botonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -136,11 +146,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(98, 98, 98)
                 .addComponent(botonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addGap(60, 60, 60)
+                .addGap(59, 59, 59)
                 .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addGap(60, 60, 60)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addGap(185, 185, 185))
+                .addGap(59, 59, 59)
+                .addComponent(botonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addGap(61, 61, 61)
+                .addComponent(botonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addGap(71, 71, 71))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -149,6 +161,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -156,7 +169,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
         );
 
         pack();
@@ -175,13 +188,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jDesktopPane1.add(eliminarExperienciaEducativa).setVisible(true);
     }//GEN-LAST:event_botonEliminarMouseClicked
 
-    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+    private void botonBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonAgregarActionPerformed
+        jDesktopPane1.removeAll();
+        BuscarExperienciaEducativa buscarExperienciaEducativa = new BuscarExperienciaEducativa();
+        jDesktopPane1.add(buscarExperienciaEducativa).setVisible(true);
+    }//GEN-LAST:event_botonBuscarMouseClicked
 
-    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+    private void botonModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonModificarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonEliminarActionPerformed
+        jDesktopPane1.removeAll();
+        ModificarExperienciaEducativa eliminarExperienciaEducativa = new ModificarExperienciaEducativa();
+        jDesktopPane1.add(eliminarExperienciaEducativa).setVisible(true);
+    }//GEN-LAST:event_botonModificarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -221,8 +240,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregar;
+    private javax.swing.JButton botonBuscar;
     private javax.swing.JButton botonEliminar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton botonModificar;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -132,7 +132,6 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         jLabel2.setText("Docente");
 
         campoDocente.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        campoDocente.setText(" ");
         campoDocente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 campoDocenteMouseClicked(evt);
@@ -370,7 +369,8 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
                             if (horaIngresada >= HORAENTRADA && horaIngresada <= HORASALIDA) {
                                 if (archivo.verificarHora(campoHora.getText(), boxSeleccionados)) {
                                     Horario horario = new Horario();
-                                    archivo.agregarRegistro("ExperienciasEducativas.txt", campoEE.getText() + "/" + campoDocente.getText());
+                                    String docente=campoEE.getText() + "/" + campoDocente.getText();
+                                    archivo.agregarRegistro("ExperienciasEducativas.txt", docente);
                                     String horarioCompleto = horario.crearFormatoRegistro(campoEE.getText(), campoHora.getText(), boxSeleccionados, campoSalon.getText());
                                     archivo.agregarRegistro("Horario.txt", horarioCompleto);
                                     actualizarTabla();
@@ -454,7 +454,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         if (!campoEE.getText().equals("")) {
             String experienciaEducativa = campoEE.getText();
             Archivo archivo = new Archivo();
-            String profesor = archivo.buscarRegistro(experienciaEducativa, "ExperienciasEducativas.txt");
+            String profesor = archivo.buscarRegistro(experienciaEducativa, "ExperienciasEducativas.txt",1);
             if (!profesor.equalsIgnoreCase("")) {
                 campoDocente.setText(profesor.split("/")[1]);
             }

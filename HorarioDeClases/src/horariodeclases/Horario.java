@@ -15,7 +15,7 @@ public class Horario {
         for (int i = 0; i < DIAS_SEMANA.length; i++) {
             for (int j = 0; j < dias.length; j++) {
                 if (DIAS_SEMANA[i].equalsIgnoreCase(dias[j])) {
-                    cadena += materia + "(" + salon + ")/";
+                    cadena += materia + "-" + salon + "-/";
                     diaCorrecto = true;
                     break;
                 }

@@ -5,7 +5,12 @@
  */
 package InterfazDeUsuario;
 
+import horariodeclases.Archivo;
+import horariodeclases.Horario;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,14 +18,17 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
 
+    private String horaModificada;
+    private String materiaModificada;
     /**
      * Creates new form ModificarExperienciaEducativa
      */
     public ModificarExperienciaEducativa() {
         initComponents();
-        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
-        BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null);
+        actualizarTabla();
     }
 
     /**
@@ -33,31 +41,538 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        boxViernes = new javax.swing.JCheckBox();
+        boxMiercoles = new javax.swing.JCheckBox();
+        botonModificar = new javax.swing.JButton();
+        boxJueves = new javax.swing.JCheckBox();
+        campoHora = new javax.swing.JTextField();
+        boxMartes = new javax.swing.JCheckBox();
+        botonGuardar = new javax.swing.JButton();
+        boxLunes = new javax.swing.JCheckBox();
+        jLabel3 = new javax.swing.JLabel();
+        boxTodosLosDias = new javax.swing.JCheckBox();
+        campoEE = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaHorario = new javax.swing.JTable();
+        campoSalon = new javax.swing.JTextField();
 
-        jLabel1.setText("Modificar Experiencia Educativa");
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel1.setText("Experiencia Educativa");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel4.setText("Salon");
+
+        boxViernes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        boxViernes.setText("Viernes");
+        boxViernes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxViernesActionPerformed(evt);
+            }
+        });
+
+        boxMiercoles.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        boxMiercoles.setText("Miercoles");
+        boxMiercoles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxMiercolesActionPerformed(evt);
+            }
+        });
+
+        botonModificar.setBackground(new java.awt.Color(24, 82, 157));
+        botonModificar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        botonModificar.setForeground(new java.awt.Color(255, 255, 255));
+        botonModificar.setText("Modificar");
+        botonModificar.setBorder(null);
+        botonModificar.setBorderPainted(false);
+        botonModificar.setRequestFocusEnabled(false);
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
+
+        boxJueves.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        boxJueves.setText("Jueves");
+        boxJueves.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxJuevesActionPerformed(evt);
+            }
+        });
+
+        campoHora.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        campoHora.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoHoraKeyTyped(evt);
+            }
+        });
+
+        boxMartes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        boxMartes.setText("Martes");
+        boxMartes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxMartesActionPerformed(evt);
+            }
+        });
+
+        botonGuardar.setBackground(new java.awt.Color(24, 82, 157));
+        botonGuardar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        botonGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        botonGuardar.setText("Guardar");
+        botonGuardar.setBorder(null);
+        botonGuardar.setBorderPainted(false);
+        botonGuardar.setRequestFocusEnabled(false);
+        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
+
+        boxLunes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        boxLunes.setText("Lunes");
+        boxLunes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxLunesActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel3.setText("Hora");
+
+        boxTodosLosDias.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        boxTodosLosDias.setText("Todos los días");
+        boxTodosLosDias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxTodosLosDiasActionPerformed(evt);
+            }
+        });
+
+        campoEE.setEditable(false);
+        campoEE.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        campoEE.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoEEKeyTyped(evt);
+            }
+        });
+
+        tablaHorario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Hora", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"
+            }
+        ));
+        tablaHorario.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tablaHorario);
+
+        campoSalon.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        campoSalon.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoSalonKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(308, 308, 308)
-                .addComponent(jLabel1)
-                .addContainerGap(542, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(campoEE, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(campoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(campoSalon, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(122, 122, 122))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(235, 235, 235)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(156, 156, 156)
+                                        .addComponent(boxTodosLosDias))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(boxLunes)
+                                        .addGap(15, 15, 15)
+                                        .addComponent(boxMartes)
+                                        .addGap(15, 15, 15)
+                                        .addComponent(boxMiercoles)
+                                        .addGap(15, 15, 15)
+                                        .addComponent(boxJueves)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(boxViernes))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(29, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jLabel1)
-                .addContainerGap(466, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(campoEE, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(campoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoSalon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addComponent(boxTodosLosDias)
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boxLunes)
+                    .addComponent(boxMartes)
+                    .addComponent(boxMiercoles)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(boxJueves)
+                        .addComponent(boxViernes)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(94, 94, 94))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void boxViernesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxViernesActionPerformed
+        // TODO add your handling code here:
+        if (!boxViernes.isSelected()) {
+            boxTodosLosDias.setSelected(false);
+        } else {
+            if (boxLunes.isSelected() && boxMartes.isSelected() && boxMiercoles.isSelected() && boxJueves.isSelected()) {
+                boxTodosLosDias.setSelected(true);
+            }
+        }
+    }//GEN-LAST:event_boxViernesActionPerformed
 
+    private void boxMiercolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMiercolesActionPerformed
+        // TODO add your handling code here:
+        if (!boxMiercoles.isSelected()) {
+            boxTodosLosDias.setSelected(false);
+        } else {
+            if (boxLunes.isSelected() && boxMartes.isSelected() && boxViernes.isSelected() && boxJueves.isSelected()) {
+                boxTodosLosDias.setSelected(true);
+            }
+        }
+    }//GEN-LAST:event_boxMiercolesActionPerformed
+
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
+
+        int fila = tablaHorario.getSelectedRow();
+        int columna = tablaHorario.getSelectedColumn();
+
+        if (fila >= 0 && columna >= 0) {
+            String elementoSeleccionado = String.valueOf(formatoHorario.getValueAt(fila, columna));
+            if (!(elementoSeleccionado.equals(" "))) {
+                Archivo archivo = new Archivo();
+                columna = 0;
+                String filaObtenida = archivo.buscarRegistro(String.valueOf(formatoHorario.getValueAt(fila, columna)), "Horario.txt",1);
+                horaModificada=filaObtenida;
+                setHoraModificada(filaObtenida);
+                llenarCampo(filaObtenida, elementoSeleccionado);
+            } else {
+                JOptionPane.showMessageDialog(this, "Seleccione una casilla con inforrmacion a modificar", "Casilla vacia", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error, seleccione una casilla", "Seleccion de casilla", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_botonModificarActionPerformed
+
+    private void boxJuevesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxJuevesActionPerformed
+        // TODO add your handling code here:
+        if (!boxJueves.isSelected()) {
+            boxTodosLosDias.setSelected(false);
+        } else {
+            if (boxLunes.isSelected() && boxMartes.isSelected() && boxMiercoles.isSelected() && boxViernes.isSelected()) {
+                boxTodosLosDias.setSelected(true);
+            }
+        }
+    }//GEN-LAST:event_boxJuevesActionPerformed
+
+    private void campoHoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoHoraKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if (!Character.isDigit(caracter)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoHoraKeyTyped
+
+    private void boxMartesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMartesActionPerformed
+        // TODO add your handling code here:
+        if (!boxMartes.isSelected()) {
+            boxTodosLosDias.setSelected(false);
+        } else {
+            if (boxLunes.isSelected() && boxViernes.isSelected() && boxMiercoles.isSelected() && boxJueves.isSelected()) {
+                boxTodosLosDias.setSelected(true);
+            }
+        }
+    }//GEN-LAST:event_boxMartesActionPerformed
+
+    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+        // TODO add your handling code here:
+        borrarDato();
+        if (!campoEE.getText().equals("")) {
+            if (!campoHora.getText().equals("")) {
+                if (!campoSalon.getText().equals("")) {
+                        if (boxLunes.isSelected() || boxMartes.isSelected() || boxMiercoles.isSelected() || boxJueves.isSelected() || boxViernes.isSelected()) {
+                            Archivo archivo = new Archivo();
+                            String boxSeleccionados = "";
+                            if (boxTodosLosDias.isSelected()) {
+                                boxSeleccionados = "Lunes,Martes,Miercoles,Jueves,Viernes";
+                            } else {
+                                if (boxLunes.isSelected()) {
+                                    boxSeleccionados += "Lunes";
+                                }
+                                if (boxMartes.isSelected()) {
+                                    boxSeleccionados += ",Martes";
+                                }
+                                if (boxMiercoles.isSelected()) {
+                                    boxSeleccionados += ",Miercoles";
+                                }
+                                if (boxJueves.isSelected()) {
+                                    boxSeleccionados += ",Jueves";
+                                }
+                                if (boxViernes.isSelected()) {
+                                    boxSeleccionados += ",Viernes";
+                                }
+                            }
+                            int horaIngresada = Integer.parseInt(campoHora.getText());
+                            final int HORAENTRADA = 8, HORASALIDA = 20;
+                            if (horaIngresada >= HORAENTRADA && horaIngresada <= HORASALIDA) {
+                                if (archivo.verificarHora(campoHora.getText(), boxSeleccionados)) {
+                                    Horario horario = new Horario();
+                                    //borrarDato();
+                                    String horarioCompleto = horario.crearFormatoRegistro(campoEE.getText(), campoHora.getText(), boxSeleccionados, campoSalon.getText());
+                                    archivo.agregarRegistro("Horario.txt", horarioCompleto);
+                                    actualizarTabla();
+                                    vaciarCampos();
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "La hora y día ingresados No se encuentran disponibles");
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Error, hora fuera de rango de clases (8 - 20 hrs)", "Hora ingresada", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguno de los Días.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se ha ingresado el número de Salón.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No se ha  ingresado la hora de Clase.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No se ha ingresado el nombre de la Experiencia Educativa.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_botonGuardarActionPerformed
+
+    private void boxLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxLunesActionPerformed
+        // TODO add your handling code here:
+        if (!boxLunes.isSelected()) {
+            boxTodosLosDias.setSelected(false);
+        } else {
+            if (boxViernes.isSelected() && boxMartes.isSelected() && boxMiercoles.isSelected() && boxJueves.isSelected()) {
+                boxTodosLosDias.setSelected(true);
+            }
+        }
+    }//GEN-LAST:event_boxLunesActionPerformed
+
+    private void boxTodosLosDiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTodosLosDiasActionPerformed
+        // TODO add your handling code here:
+        if (boxTodosLosDias.isSelected()) {
+            boxLunes.setSelected(true);
+            boxMartes.setSelected(true);
+            boxMiercoles.setSelected(true);
+            boxJueves.setSelected(true);
+            boxViernes.setSelected(true);
+        } else {
+            boxLunes.setSelected(false);
+            boxMartes.setSelected(false);
+            boxMiercoles.setSelected(false);
+            boxJueves.setSelected(false);
+            boxViernes.setSelected(false);
+        }
+    }//GEN-LAST:event_boxTodosLosDiasActionPerformed
+
+    private void campoEEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoEEKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if (!Character.isLetter(caracter) && caracter != KeyEvent.VK_SPACE) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoEEKeyTyped
+
+    private void campoSalonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoSalonKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if (!Character.isDigit(caracter)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoSalonKeyTyped
+
+    private void actualizarTabla() {
+        DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
+        Archivo archivito = new Archivo();
+        String horario[] = archivito.leerArchivo("Horario.txt");
+        String experienciasEducativas[] = archivito.leerArchivo("ExperienciasEducativas.txt");
+        formatoHorario.setRowCount(0);
+        String horarioOrdenado[] = ordenarHorario(horario);
+        for (int i = 0; i < horario.length; i++) {
+            formatoHorario.addRow(horarioOrdenado[i].split("/"));
+        }
+    }
+
+    private void llenarCampo(String texto, String materiaBuscada) {
+        diaSeleccionado(0);
+        String[] arreglo = texto.split("/");
+        String salon="", materia="";
+        campoHora.setText(arreglo[0].split(":")[0]);
+        for (int i = 1; i < arreglo.length; i++) {
+            if (arreglo[i].equalsIgnoreCase(materiaBuscada)) {
+                salon=String.valueOf(arreglo[i].charAt(arreglo[i].length()-2));
+                diaSeleccionado(i);
+                char caracter;
+                if(materia.equals("")){
+                for (int j = arreglo[i].length()-4; j >= 0; j--) {
+                    caracter=arreglo[i].charAt(j);
+                    materia=caracter+materia;
+                }
+                }
+            }
+        }
+        campoEE.setText(materia);
+        campoSalon.setText(salon);
+        setMateriaModificada(materiaBuscada);
+    }
+
+    private void diaSeleccionado(int dia){
+        if (dia==0){
+            boxLunes.setSelected(false);
+            boxMartes.setSelected(false);
+            boxMiercoles.setSelected(false);
+            boxJueves.setSelected(false);
+            boxViernes.setSelected(false);
+        }
+        if (dia==1) {
+            boxLunes.setSelected(true);
+        }
+        if (dia==2) {
+            boxMartes.setSelected(true);
+        }
+        if (dia==3) {
+            boxMiercoles.setSelected(true);
+        }
+        if (dia==4) {
+            boxJueves.setSelected(true);
+        }
+        if (dia==5) {
+            boxViernes.setSelected(true);
+        }
+    }
+    
+    private String[] ordenarHorario(String[] horario) {
+        String horarioOrdenado[] = new String[horario.length];
+        final int HORA_CLASE = 20;
+        int posicion = 0;
+        for (int i = 8; i <= HORA_CLASE; i++) {
+            for (int j = 0; j < horario.length; j++) {
+                int horaActual = Integer.parseInt(horario[j].split("/")[0].split(":")[0]);
+                if (horaActual == i) {
+                    horarioOrdenado[posicion] = horario[j];
+                    posicion++;
+                    break;
+                }
+            }
+        }
+        return horarioOrdenado;
+    }
+
+    private void vaciarCampos(){
+        campoEE.setText("");
+        campoHora.setText("");
+        campoSalon.setText("");
+        boxLunes.setSelected(false);
+        boxMartes.setSelected(false);
+        boxMiercoles.setSelected(false);
+        boxJueves.setSelected(false);
+        boxViernes.setSelected(false);
+        boxTodosLosDias.setSelected(false);
+    }
+    
+    private void borrarDato(){
+        Archivo archivo = new Archivo();
+        String []arregloHora=getHoraModificada().split("/");
+        String horaNueva=arregloHora[0]+"/";
+        boolean vacio = true;
+        for (int i = 1; i < arregloHora.length; i++) {
+            if(arregloHora[i].equalsIgnoreCase(getMateriaModificada())){
+                horaNueva+=" /";
+            }else{
+                horaNueva+=arregloHora[i]+"/";
+            }
+        }
+        for (int i = 1; i < horaNueva.split("/").length; i++) {
+            if (!horaNueva.split("/")[i].equals(" ")) {
+                vacio=false;
+            }
+        }
+        archivo.modificarRegistro("Horario.txt", horaNueva, vacio);
+    }
+    
+    public void setHoraModificada(String horaModificada){
+        this.horaModificada=horaModificada;
+    }
+    
+    public String getHoraModificada(){
+        return this.horaModificada;
+    }
+    
+    public void setMateriaModificada(String materiaModificada){
+        this.materiaModificada=materiaModificada;
+    }
+    
+    public String getMateriaModificada(){
+        return this.materiaModificada;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonGuardar;
+    private javax.swing.JButton botonModificar;
+    private javax.swing.JCheckBox boxJueves;
+    private javax.swing.JCheckBox boxLunes;
+    private javax.swing.JCheckBox boxMartes;
+    private javax.swing.JCheckBox boxMiercoles;
+    private javax.swing.JCheckBox boxTodosLosDias;
+    private javax.swing.JCheckBox boxViernes;
+    private javax.swing.JTextField campoEE;
+    private javax.swing.JTextField campoHora;
+    private javax.swing.JTextField campoSalon;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaHorario;
     // End of variables declaration//GEN-END:variables
 }
