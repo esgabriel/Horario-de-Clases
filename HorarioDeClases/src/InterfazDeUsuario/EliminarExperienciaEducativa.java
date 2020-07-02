@@ -6,6 +6,11 @@
 package InterfazDeUsuario;
 
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
+import horariodeclases.Archivo;
+//import horariodeclases.Horario;
+//import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,15 +18,19 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class EliminarExperienciaEducativa extends javax.swing.JInternalFrame {
 
+    private String horaModificada;
+    private String materiaModificada;
+
     /**
      * Creates new form EliminarExperiencia
      */
     public EliminarExperienciaEducativa() {
         initComponents();
-        
-        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
-        BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
+
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null);
+        actualizarTabla();
     }
 
     /**
@@ -33,18 +42,36 @@ public class EliminarExperienciaEducativa extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaHorario = new javax.swing.JTable();
+        botonEliminar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1020, 580));
 
-        jLabel1.setText("Eliminar Experiencia Educativa");
+        tablaHorario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Hora", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"
+            }
+        ));
+        tablaHorario.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tablaHorario);
 
-        jButton1.setText("Eliminar");
-
-        jButton2.setText("jButton2");
+        botonEliminar.setBackground(new java.awt.Color(24, 82, 157));
+        botonEliminar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        botonEliminar.setText("Eliminar");
+        botonEliminar.setBorder(null);
+        botonEliminar.setBorderPainted(false);
+        botonEliminar.setRequestFocusEnabled(false);
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -53,34 +80,123 @@ public class EliminarExperienciaEducativa extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(jButton1)
-                        .addGap(222, 222, 222)
-                        .addComponent(jButton2))
+                        .addGap(392, 392, 392)
+                        .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(283, 283, 283)
-                        .addComponent(jLabel1)))
-                .addContainerGap(451, Short.MAX_VALUE))
+                        .addGap(27, 27, 27)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 358, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(118, 118, 118))
+                .addGap(103, 103, 103)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
+                .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
+
+        int fila = tablaHorario.getSelectedRow();
+        int columna = tablaHorario.getSelectedColumn();
+
+        if (fila >= 0 && columna >= 0) {
+            String elementoSeleccionado = String.valueOf(formatoHorario.getValueAt(fila, columna));
+            if (!(elementoSeleccionado.equals(" "))) {
+                int confirmacion=JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar la materia seleccionaada?","Confirmacion",JOptionPane.YES_NO_OPTION);
+                if ( confirmacion == JOptionPane.YES_OPTION) {
+                    setMateriaModificada(elementoSeleccionado);
+                    Archivo archivo = new Archivo();
+                    columna = 0;
+                    String filaObtenida = archivo.buscarRegistro(String.valueOf(formatoHorario.getValueAt(fila, columna)), "Horario.txt", 1);
+                    //horaModificada=filaObtenida;
+                    setHoraModificada(filaObtenida);
+                    borrarDato();
+                    actualizarTabla();
+                }
+                //llenarCampo(filaObtenida, elementoSeleccionado);
+            } else {
+                JOptionPane.showMessageDialog(this, "Seleccione una casilla con inforrmacion a modificar", "Casilla vacia", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error, seleccione una casilla", "Seleccion de casilla", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void actualizarTabla() {
+        DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
+        Archivo archivito = new Archivo();
+        String horario[] = archivito.leerArchivo("Horario.txt");
+        String experienciasEducativas[] = archivito.leerArchivo("ExperienciasEducativas.txt");
+        formatoHorario.setRowCount(0);
+        String horarioOrdenado[] = ordenarHorario(horario);
+        for (int i = 0; i < horario.length; i++) {
+            formatoHorario.addRow(horarioOrdenado[i].split("/"));
+        }
+    }
+
+    private String[] ordenarHorario(String[] horario) {
+        String horarioOrdenado[] = new String[horario.length];
+        final int HORA_CLASE = 20;
+        int posicion = 0;
+        for (int i = 8; i <= HORA_CLASE; i++) {
+            for (int j = 0; j < horario.length; j++) {
+                int horaActual = Integer.parseInt(horario[j].split("/")[0].split(":")[0]);
+                if (horaActual == i) {
+                    horarioOrdenado[posicion] = horario[j];
+                    posicion++;
+                    break;
+                }
+            }
+        }
+        return horarioOrdenado;
+    }
+
+    private void borrarDato() {
+        Archivo archivo = new Archivo();
+        String[] arregloHora = getHoraModificada().split("/");
+        String horaNueva = arregloHora[0] + "/";
+        boolean vacio = true;
+        for (int i = 1; i < arregloHora.length; i++) {
+            if (arregloHora[i].equalsIgnoreCase(getMateriaModificada())) {
+                horaNueva += " /";
+            } else {
+                horaNueva += arregloHora[i] + "/";
+            }
+        }
+        for (int i = 1; i < horaNueva.split("/").length; i++) {
+            if (!horaNueva.split("/")[i].equals(" ")) {
+                vacio = false;
+            }
+        }
+        archivo.modificarRegistro("Horario.txt", horaNueva, vacio);
+    }
+
+    public void setHoraModificada(String horaModificada) {
+        this.horaModificada = horaModificada;
+    }
+
+    public String getHoraModificada() {
+        return this.horaModificada;
+    }
+
+    public void setMateriaModificada(String materiaModificada) {
+        this.materiaModificada = materiaModificada;
+    }
+
+    public String getMateriaModificada() {
+        return this.materiaModificada;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton botonEliminar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaHorario;
     // End of variables declaration//GEN-END:variables
 }
