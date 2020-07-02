@@ -366,7 +366,8 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
                                 }
                             }
                             int horaIngresada = Integer.parseInt(campoHora.getText());
-                            if (horaIngresada >= 8 && horaIngresada <= 20) {
+                            final int HORAENTRADA = 8, HORASALIDA = 20;
+                            if (horaIngresada >= HORAENTRADA && horaIngresada <= HORASALIDA) {
                                 if (archivo.verificarHora(campoHora.getText(), boxSeleccionados)) {
                                     Horario horario = new Horario();
                                     archivo.modificarTexto("ExperienciasEducativas.txt", campoEE.getText() + "/" + campoDocente.getText());
@@ -405,7 +406,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         String experienciasEducativas[] = archivito.leerArchivo("ExperienciasEducativas.txt");
         formatoHorario.setRowCount(0);
         formatoEE.setRowCount(0);
-        String horarioOrdenado[] = ordenamiento(horario);
+        String horarioOrdenado[] = ordenarHorario(horario);
         for (int i = 0; i < horario.length; i++) {
             formatoHorario.addRow(horarioOrdenado[i].split("/"));
         }
@@ -414,21 +415,21 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         }
     }
 
-    private String[] ordenamiento(String[] horario) {
-        String cadenaOrdenada[] = new String[horario.length];
+    private String[] ordenarHorario(String[] horario) {
+        String horarioOrdenado[] = new String[horario.length];
         final int HORA_CLASE = 20;
         int posicion = 0;
         for (int i = 8; i <= HORA_CLASE; i++) {
             for (int j = 0; j < horario.length; j++) {
                 int horaActual = Integer.parseInt(horario[j].split("/")[0].split(":")[0]);
                 if (horaActual == i) {
-                    cadenaOrdenada[posicion] = horario[j];
+                    horarioOrdenado[posicion] = horario[j];
                     posicion++;
                     break;
                 }
             }
         }
-        return cadenaOrdenada;
+        return horarioOrdenado;
     }
 
     private void boxTodosLosDiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTodosLosDiasActionPerformed

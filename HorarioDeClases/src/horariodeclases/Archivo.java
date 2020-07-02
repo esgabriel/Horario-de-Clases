@@ -14,9 +14,8 @@ import java.io.*;
 public class Archivo {
 
     public String[] leerArchivo(String archivo) {
-        String cadena, textoSalida = "";
-        String[] salida = {};
-        Horario horario = new Horario();
+        String registroArchivo, registros = "";
+        String[] registroFormato = {};
         FileReader abrirArchivo = null; //Abrir archivo
         BufferedReader leerArchivo = null; //Leer archivo
 
@@ -25,10 +24,10 @@ public class Archivo {
             leerArchivo = new BufferedReader(abrirArchivo);
 
             try {
-                while ((cadena = leerArchivo.readLine()) != null) {
-                    textoSalida += cadena + "&";
+                while ((registroArchivo = leerArchivo.readLine()) != null) {
+                    registros += registroArchivo + "&";
                 }
-                salida = textoSalida.split("&");
+                registroFormato = registros.split("&");
             } catch (IOException errorLectura) {
                 System.out.println("Error de lectura");
             }
@@ -43,30 +42,7 @@ public class Archivo {
                 System.out.println("Error al cerrar archivo de texto");
             }
         }
-        return salida;
-    }
-
-    public void agregarRegistro(String nombreArchivo, String registro) {
-        FileWriter abrirArchivo = null; //Abrir el archivo
-        PrintWriter escribirArchivo = null; //Escribir en el archivo
-
-        try {
-            abrirArchivo = new FileWriter(nombreArchivo, true);
-            escribirArchivo = new PrintWriter(abrirArchivo);
-
-            escribirArchivo.println(registro);
-        } catch (Exception errorAbrir) {
-            System.out.println("Error al abrir el archivo");
-        } finally {
-            try {
-                if (null != abrirArchivo) {
-                    abrirArchivo.close();
-                }
-            } catch (Exception errorCerrar) {
-                System.out.println("Error al cerrar el archivo");
-            }
-        }
-
+        return registroFormato;
     }
 
     public String buscarRegistro(String datoBuscado, String archivo) {
@@ -103,90 +79,85 @@ public class Archivo {
     }
 
     public void modificarTexto(String archivo, String texto) {
-        //Materias - - - Redes/Vergara
-        String cadena;
-        FileReader fr = null;
-        BufferedReader br = null;
+
+        String registroArchivo;
+        FileReader abrirLecturaArchivo = null;
+        BufferedReader leerArchivo = null;
         try {
-            fr = new FileReader(archivo);
-            br = new BufferedReader(fr);
-            FileWriter fichero = null;
-            PrintWriter pw = null;
+            abrirLecturaArchivo = new FileReader(archivo);
+            leerArchivo = new BufferedReader(abrirLecturaArchivo);
+            FileWriter abrirEscrituraArchivo = null;
+            PrintWriter escribirArchivo = null;
             try {
-                fichero = new FileWriter("Temporal.txt");
-                pw = new PrintWriter(fichero);
+                abrirEscrituraArchivo = new FileWriter("Temporal.txt");
+                escribirArchivo = new PrintWriter(abrirEscrituraArchivo);
                 try {
-                    String arreglo1[] = {};
-                    String arreglo2[] = texto.split("/");
-                    
-                    boolean eleccion = false;
-                    while ((cadena = br.readLine()) != null) {
-                        arreglo1 = cadena.split("/");
+                    String registro[] = {};
+                    String nuevoRegistro[] = texto.split("/");
+
+                    boolean registroRepetido = false;
+                    while ((registroArchivo = leerArchivo.readLine()) != null) {
+                        registro = registroArchivo.split("/");
                         //if (cadena.split("/")[0].equalsIgnoreCase(texto.split("/")[0])) {
                         if (archivo.equals("ExperienciasEducativas.txt")) {
-                            if (texto.equalsIgnoreCase(arreglo1[0])) {
-                                eleccion = true;
-                                pw.println(cadena);
+                            if (texto.equalsIgnoreCase(registro[0])) {
+                                registroRepetido = true;
+                                escribirArchivo.println(registroArchivo);
                             }
                         } else {
-                            if (arreglo1[0].equalsIgnoreCase(arreglo2[0])) {
-                                String cadenaFinal = arreglo1[0] + "/";
-                                eleccion = true;
-                                for (int i = 1; i < arreglo1.length; i++) {
-                                    if (arreglo1[i].equals(" ")) {
-                                        arreglo1[i] = arreglo2[i];
+                            if (registro[0].equalsIgnoreCase(nuevoRegistro[0])) {
+                                String registroNuevo = registro[0] + "/";
+                                registroRepetido = true;
+                                for (int i = 1; i < registro.length; i++) {
+                                    if (registro[i].equals(" ")) {
+                                        registro[i] = nuevoRegistro[i];
                                     }
-                                    cadenaFinal += arreglo1[i] + "/";
-                                    /*if (i == arreglo1.length - 1) {
-                                        cadenaFinal += arreglo1[i];
-                                    } else {
-                                        cadenaFinal += arreglo1[i] + "/";
-                                    }*/
+                                    registroNuevo += registro[i] + "/";
                                 }
-                                
-                                pw.println(cadenaFinal);
+
+                                escribirArchivo.println(registroNuevo);
                             } else {
-                                pw.println(cadena);
+                                escribirArchivo.println(registroArchivo);
                             }
                         }
                     }
-                    if (!eleccion) {
-                        pw.println(texto);
+                    if (!registroRepetido) {
+                        escribirArchivo.println(texto);
                     }
-                } catch (IOException e2) {
+                } catch (IOException errorLectura) {
                     System.out.println("Error de lectura");
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (Exception errorAbrirArchivo) {
+                errorAbrirArchivo.printStackTrace();
             } finally {
                 try {
-                    if (null != fichero) {
-                        fichero.close();
+                    if (null != abrirEscrituraArchivo) {
+                        abrirEscrituraArchivo.close();
                     }
-                } catch (Exception e2) {
-                    e2.printStackTrace();
+                } catch (Exception errorCerrarArchivo) {
+                    errorCerrarArchivo.printStackTrace();
                 }
             }
-        } catch (FileNotFoundException e2) {
+        } catch (FileNotFoundException archivoNoEncontrado) {
             System.out.println("Archivo no encontrado");
         } finally {
             try {
-                if (fr != null) {
-                    fr.close();
+                if (abrirLecturaArchivo != null) {
+                    abrirLecturaArchivo.close();
                 }
-            } catch (Exception e) {
+            } catch (Exception errorCerrarArchivo) {
 
             }
         }
-        File archivo1 = new File(archivo);
-        File archivo2 = new File("Temporal.txt");
-        archivo1.delete();
-        archivo2.renameTo(archivo1);
+        File archivoOriginal = new File(archivo);
+        File archivoNuevo = new File("Temporal.txt");
+        archivoOriginal.delete();
+        archivoNuevo.renameTo(archivoOriginal);
     }
 
     public boolean verificarHora(String hora, String dia) {
 
-        String cadena;
+        String registroArchivo;
         boolean disponibilidad = true;
         FileReader abrirArchivo = null; //Abrir archivo
         BufferedReader leerArchivo = null; //Leer archivo
@@ -196,11 +167,11 @@ public class Archivo {
             leerArchivo = new BufferedReader(abrirArchivo);
 
             try {
-                while ((cadena = leerArchivo.readLine()) != null) {
+                while ((registroArchivo = leerArchivo.readLine()) != null) {
                     String horaTexto = hora + ":00";
-                    if (cadena.split("/")[0].equals(horaTexto)) {
+                    if (registroArchivo.split("/")[0].equals(horaTexto)) {
                         String diaSemana[] = dia.split(",");
-                        String horario[] = cadena.split("/");
+                        String horario[] = registroArchivo.split("/");
                         for (int i = 0; i < diaSemana.length; i++) {
                             // 5 / Mate / 
                             if (diaSemana[i].equalsIgnoreCase("Lunes")) {
