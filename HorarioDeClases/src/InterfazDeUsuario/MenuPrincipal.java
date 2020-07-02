@@ -44,7 +44,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botonBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1210, 580));
         setResizable(false);
 
         jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));

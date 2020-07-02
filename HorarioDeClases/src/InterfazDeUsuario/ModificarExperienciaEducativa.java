@@ -57,8 +57,10 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaHorario = new javax.swing.JTable();
         campoSalon = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1020, 580));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel1.setText("Experiencia Educativa");
@@ -66,6 +68,7 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel4.setText("Salon");
 
+        boxViernes.setBackground(new java.awt.Color(255, 255, 255));
         boxViernes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         boxViernes.setText("Viernes");
         boxViernes.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +77,7 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
             }
         });
 
+        boxMiercoles.setBackground(new java.awt.Color(255, 255, 255));
         boxMiercoles.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         boxMiercoles.setText("Miercoles");
         boxMiercoles.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +99,7 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
             }
         });
 
+        boxJueves.setBackground(new java.awt.Color(255, 255, 255));
         boxJueves.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         boxJueves.setText("Jueves");
         boxJueves.addActionListener(new java.awt.event.ActionListener() {
@@ -110,6 +115,7 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
             }
         });
 
+        boxMartes.setBackground(new java.awt.Color(255, 255, 255));
         boxMartes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         boxMartes.setText("Martes");
         boxMartes.addActionListener(new java.awt.event.ActionListener() {
@@ -131,6 +137,7 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
             }
         });
 
+        boxLunes.setBackground(new java.awt.Color(255, 255, 255));
         boxLunes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         boxLunes.setText("Lunes");
         boxLunes.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +149,7 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel3.setText("Hora");
 
+        boxTodosLosDias.setBackground(new java.awt.Color(255, 255, 255));
         boxTodosLosDias.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         boxTodosLosDias.setText("Todos los días");
         boxTodosLosDias.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +159,7 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
         });
 
         campoEE.setEditable(false);
+        campoEE.setBackground(new java.awt.Color(255, 255, 255));
         campoEE.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         campoEE.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -166,6 +175,8 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
                 "Hora", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"
             }
         ));
+        tablaHorario.setAlignmentX(0.0F);
+        tablaHorario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tablaHorario.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaHorario);
 
@@ -176,83 +187,93 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel2.setText("Seleccione un elemento del horario para modificarlo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(campoEE, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(campoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(campoSalon, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(122, 122, 122))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(235, 235, 235)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(156, 156, 156)
-                                        .addComponent(boxTodosLosDias))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(boxLunes)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(boxMartes)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(boxMiercoles)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(boxJueves)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(boxViernes))))
+                                .addContainerGap()
+                                .addComponent(boxLunes)
+                                .addGap(10, 10, 10)
+                                .addComponent(boxMartes)
+                                .addGap(10, 10, 10)
+                                .addComponent(boxMiercoles)
+                                .addGap(10, 10, 10)
+                                .addComponent(boxJueves)
+                                .addGap(10, 10, 10)
+                                .addComponent(boxViernes))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(29, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
+                                .addGap(142, 142, 142)
+                                .addComponent(boxTodosLosDias))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(campoSalon, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel3))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(campoEE, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(campoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76)
+                        .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(campoEE, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(campoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoSalon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addComponent(boxTodosLosDias)
-                .addGap(17, 17, 17)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boxLunes)
-                    .addComponent(boxMartes)
-                    .addComponent(boxMiercoles)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(boxJueves)
-                        .addComponent(boxViernes)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel1)
+                        .addGap(11, 11, 11)
+                        .addComponent(campoEE, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(campoHora, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(6, 6, 6)
+                                    .addComponent(campoSalon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(46, 46, 46)
+                        .addComponent(boxTodosLosDias)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(boxLunes)
+                            .addComponent(boxMartes)
+                            .addComponent(boxMiercoles)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(boxJueves)
+                                .addComponent(boxViernes)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(94, 94, 94))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -472,8 +493,10 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
      * El metodo llenarCampo permite recibir los datos de la materia
      * seleccionada para que el usuario pueda modificarlos
      *
-     * @param texto
-     * @param materiaBuscada
+     * @param texto Este parametro recibe el horario en un formato
+     * predeterminado
+     * @param materiaBuscada Este parametro recibe la materia que el usuario
+     * desea modificar
      * @version 0.1
      */
     private void llenarCampo(String texto, String materiaBuscada) {
@@ -502,7 +525,8 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
     /**
      * El metodo diaSeleccionado permite saber en que dia se toma la clase
      *
-     * @param dia
+     * @param dia Este parametro recibe un numero para indicar el dia en que toma
+     * la Experiencia Educativa en el horario
      * @version 0.1
      */
     private void diaSeleccionado(int dia) {
@@ -597,6 +621,7 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
     private javax.swing.JTextField campoHora;
     private javax.swing.JTextField campoSalon;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;

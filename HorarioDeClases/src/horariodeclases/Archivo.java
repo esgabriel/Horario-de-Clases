@@ -27,7 +27,7 @@ public class Archivo {
      * El metodo leerArchivo permite abrir y leer el archivo de texto donde se
      * almacenan los registros del horario
      *
-     * @param archivo
+     * @param archivo Este parametro recibe el nombre del archivo para abrirlo
      * @throws IOException Este error ocurre cuando no se puede leer el archivo
      * @throws FileNotFoundException Este error ocurre cuando no se encuentra el
      * archivo
@@ -71,9 +71,10 @@ public class Archivo {
      * El metodo buscarRegistro buscar algun dato solicitado por el usuario que
      * se encuentre en el horario
      *
-     * @param datoBuscado
-     * @param archivo
-     * @param opcion
+     * @param datoBuscado Este parametro recibe el registro que se desea buscar
+     * en el archivo de texto
+     * @param archivo Este parametro recibe el nombre del archivo para abrirlo
+     * @param opcion Este parametro recibe el tipo de busqueda que se desea realizar
      * @throws IOException Este error ocurre cuando no se puede leer el archivo
      * @throws FileNotFoundException Este error ocurre cuando no se encuentra el
      * archivo
@@ -128,8 +129,8 @@ public class Archivo {
      * El metodo agregarRegistro permite agregar datos ingresados por el usuario
      * en el horario
      *
-     * @param archivo
-     * @param texto
+     * @param archivo Este parametro recibe el nombre del archivo para abrirlo
+     * @param texto Este parametro recibe el nuevo registro que se agregara al archivo
      * @throws IOException Este error ocurre cuando no se puede leer el archivo
      * @throws Exception Este error ocurre cuando no se puede abrir el archivo
      * @throws Exception Este error ocurre cuando no se puede cerrar el archivo
@@ -218,8 +219,8 @@ public class Archivo {
      * El metodo verificarHora permite validar que la hora ingresada por el
      * usuario no interfiera con otra hora en el horario
      *
-     * @param hora
-     * @param dia
+     * @param hora Este parametro recibe la hora en que se impartira nueva clase
+     * @param dia Este parametro recibe el dia en que se impartira la nueva clase
      * @throws IOException Este error occure cuando no se puede leer el archivo
      * @throws FileNotFoundException Este error ocurre cuando no se encuentra el archivo
      * @throws Exception Este error ocurre cuando el archivo no puede cerrarse correctamente
@@ -298,9 +299,9 @@ public class Archivo {
      * El metodo modificarRegistro permite eliminar o editar un registro del
      * horario de clases
      *
-     * @param archivo
-     * @param datoNuevo
-     * @param vacio
+     * @param archivo Este parametro recibe el nombre del archivo para abrirlo
+     * @param datoNuevo Este parametro recibe el nuevo registro que se agregara al archivo
+     * @param vacio Este parametro recibe una condicion para saber si el registro nuevo esta vacio
      * @throws IOException Este error ocurre cuando no se puede leer el archivo
      * @throws Exception Este error ocurre cuando no se puede abrir el archivo
      * @throws Exception Este error ocurre cuando no se puede cerrar el archivo
@@ -372,9 +373,10 @@ public class Archivo {
      * El metodo mostrarRegistro permite realizar la busqueda del horario de
      * clases que cumpla con los parametros ingresados por el usuario
      *
-     * @param archivo
-     * @param datoBuscado
-     * @param opcion
+     * @param archivo Este parametro recibe el nombre del archivo para abrirlo
+     * @param datoBuscado Este parametro recibe el registro que desea buscar el usuario
+     * @param opcion Este parametro recibe la condicion para realizar una busqueda
+     * especifica en el horario
      * @throws IOException Este error ocurre cuando el archivo no se puede leer
      * @throws FileNotFoundException Este error ocurre cuando no se encuentra el archivo
      * @throws Exception Este error ocurre cuando no se puede cerrar el archivo

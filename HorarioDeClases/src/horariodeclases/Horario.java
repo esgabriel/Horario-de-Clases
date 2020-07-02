@@ -16,14 +16,17 @@ public class Horario {
      * El metodo crearFormatoRegistro permite crear el formato para almacenar
      * los registros en el archivo "Horario.txt"
      *
-     * @param materia
-     * @param hora
-     * @param dia
-     * @param salon
+     * @param experienciaEducativa Este parametro recibe el nombre de la experiencia
+     * educativa
+     * @param hora Este parametro Este parametro recibe la hora en que se impartira
+     * la clase
+     * @param dia Este parametro recibe el dia que sera impartida la clase
+     * @param salon Este parametro recibe el numero del salon en que sera impartida
+     * la clase
      * @return formatoRegistro
      * @version 0.1
      */
-    public String crearFormatoRegistro(String materia, String hora, String dia, String salon) {
+    public String crearFormatoRegistro(String experienciaEducativa, String hora, String dia, String salon) {
         String formatoRegistro = "";
         final String[] DIAS_SEMANA = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes"};
         formatoRegistro = hora + ":00/";
@@ -33,7 +36,7 @@ public class Horario {
         for (int i = 0; i < DIAS_SEMANA.length; i++) {
             for (int j = 0; j < dias.length; j++) {
                 if (DIAS_SEMANA[i].equalsIgnoreCase(dias[j])) {
-                    formatoRegistro += materia + "-" + salon + "-/";
+                    formatoRegistro += experienciaEducativa + "-" + salon + "-/";
                     diaCorrecto = true;
                     break;
                 }
@@ -51,7 +54,7 @@ public class Horario {
      * El metodo ordenarHorario permite ordenar las horas ingresadas de menor a
      * mayor en el horario
      *
-     * @param horario
+     * @param horario Este parametro recibe todos los registros del horario
      * @return horarioOrdenado
      * @version 0.1
      */
