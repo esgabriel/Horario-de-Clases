@@ -1,7 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *Esta clase contiene los metodos para agregar una Experiencia Educativa mediante una interfaz de usuario
+ *
+ * @author Luis Angel Barrientos Perez
+ * @author Carlos Antonio Gallegos Palencia
+ * @author Jaime Antonio Hernandez Cabrera
+ * @author Gabriel Reyes Cruz
+ * @author Jose Angel Rincon Martinez
+ * @version 0.1
  */
 package InterfazDeUsuario;
 
@@ -12,19 +17,14 @@ import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author TheHu
- */
 public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form AgregarExperienciaEducativaPrueba
-     */
     public AgregarExperienciaEducativa() {
 
         initComponents();
         actualizarTabla();
+
+        //Metodo para quitar bordes en el JInternalFrame
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null);
@@ -301,7 +301,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        // TODO add your handling code here:
+
         boxTodosLosDias.setSelected(false);
         boxLunes.setSelected(false);
         boxMartes.setSelected(false);
@@ -315,7 +315,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void boxMiercolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMiercolesActionPerformed
-        // TODO add your handling code here:
+
         if (!boxMiercoles.isSelected()) {
             boxTodosLosDias.setSelected(false);
         } else {
@@ -326,7 +326,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_boxMiercolesActionPerformed
 
     private void boxLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxLunesActionPerformed
-        // TODO add your handling code here:
+
         if (!boxLunes.isSelected()) {
             boxTodosLosDias.setSelected(false);
         } else {
@@ -336,6 +336,13 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_boxLunesActionPerformed
 
+    /**
+     * El metodo botonAgregarActionPerformed tiene la funcionalidad de validar
+     * los datos ingresados por el usuario
+     *
+     * @param evt
+     * @version 0.1
+     */
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
 
         if (!campoEE.getText().equals("")) {
@@ -369,7 +376,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
                             if (horaIngresada >= HORAENTRADA && horaIngresada <= HORASALIDA) {
                                 if (archivo.verificarHora(campoHora.getText(), boxSeleccionados)) {
                                     Horario horario = new Horario();
-                                    String docente=campoEE.getText() + "/" + campoDocente.getText();
+                                    String docente = campoEE.getText() + "/" + campoDocente.getText();
                                     archivo.agregarRegistro("ExperienciasEducativas.txt", docente);
                                     String horarioCompleto = horario.crearFormatoRegistro(campoEE.getText(), campoHora.getText(), boxSeleccionados, campoSalon.getText());
                                     archivo.agregarRegistro("Horario.txt", horarioCompleto);
@@ -398,15 +405,23 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_botonAgregarActionPerformed
 
+    /**
+     * El metodo actualizarTabla permite actualizar la tabla del horario, y la
+     * de los maestros y la Experiencia Educativa que imparten
+     *
+     * @version 0.1
+     */
     private void actualizarTabla() {
         DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
         DefaultTableModel formatoEE = (DefaultTableModel) tablaEE.getModel();
         Archivo archivito = new Archivo();
+        Horario horarioClases = new Horario();
         String horario[] = archivito.leerArchivo("Horario.txt");
         String experienciasEducativas[] = archivito.leerArchivo("ExperienciasEducativas.txt");
         formatoHorario.setRowCount(0);
         formatoEE.setRowCount(0);
-        String horarioOrdenado[] = ordenarHorario(horario);
+        String horarioOrdenado[] = horarioClases.ordenarHorario(horario);
+        
         for (int i = 0; i < horario.length; i++) {
             formatoHorario.addRow(horarioOrdenado[i].split("/"));
         }
@@ -415,25 +430,7 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
         }
     }
 
-    private String[] ordenarHorario(String[] horario) {
-        String horarioOrdenado[] = new String[horario.length];
-        final int HORA_CLASE = 20;
-        int posicion = 0;
-        for (int i = 8; i <= HORA_CLASE; i++) {
-            for (int j = 0; j < horario.length; j++) {
-                int horaActual = Integer.parseInt(horario[j].split("/")[0].split(":")[0]);
-                if (horaActual == i) {
-                    horarioOrdenado[posicion] = horario[j];
-                    posicion++;
-                    break;
-                }
-            }
-        }
-        return horarioOrdenado;
-    }
-
     private void boxTodosLosDiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTodosLosDiasActionPerformed
-        // TODO add your handling code here:
         if (boxTodosLosDias.isSelected()) {
             boxLunes.setSelected(true);
             boxMartes.setSelected(true);
@@ -450,11 +447,10 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_boxTodosLosDiasActionPerformed
 
     private void campoDocenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoDocenteMouseClicked
-        // TODO add your handling code here:
         if (!campoEE.getText().equals("")) {
             String experienciaEducativa = campoEE.getText();
             Archivo archivo = new Archivo();
-            String profesor = archivo.buscarRegistro(experienciaEducativa, "ExperienciasEducativas.txt",1);
+            String profesor = archivo.buscarRegistro(experienciaEducativa, "ExperienciasEducativas.txt", 1);
             if (!profesor.equalsIgnoreCase("")) {
                 campoDocente.setText(profesor.split("/")[1]);
             }
@@ -464,7 +460,6 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campoDocenteMouseClicked
 
     private void boxMartesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMartesActionPerformed
-        // TODO add your handling code here:
         if (!boxMartes.isSelected()) {
             boxTodosLosDias.setSelected(false);
         } else {
@@ -475,7 +470,6 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_boxMartesActionPerformed
 
     private void boxJuevesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxJuevesActionPerformed
-        // TODO add your handling code here:
         if (!boxJueves.isSelected()) {
             boxTodosLosDias.setSelected(false);
         } else {
@@ -486,7 +480,6 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_boxJuevesActionPerformed
 
     private void boxViernesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxViernesActionPerformed
-        // TODO add your handling code here:
         if (!boxViernes.isSelected()) {
             boxTodosLosDias.setSelected(false);
         } else {
@@ -497,7 +490,6 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_boxViernesActionPerformed
 
     private void campoHoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoHoraKeyTyped
-        // TODO add your handling code here:
         char caracter = evt.getKeyChar();
         if (!Character.isDigit(caracter)) {
             evt.consume();
@@ -505,7 +497,6 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campoHoraKeyTyped
 
     private void campoSalonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoSalonKeyTyped
-        // TODO add your handling code here:
         char caracter = evt.getKeyChar();
         if (!Character.isDigit(caracter)) {
             evt.consume();
@@ -513,7 +504,6 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campoSalonKeyTyped
 
     private void campoEEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoEEKeyTyped
-        // TODO add your handling code here:
         char caracter = evt.getKeyChar();
         if (!Character.isLetter(caracter) && caracter != KeyEvent.VK_SPACE) {
             evt.consume();
@@ -521,7 +511,6 @@ public class AgregarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campoEEKeyTyped
 
     private void campoDocenteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDocenteKeyTyped
-        // TODO add your handling code here:
         char caracter = evt.getKeyChar();
         if (!Character.isLetter(caracter) && caracter != KeyEvent.VK_SPACE) {
             evt.consume();

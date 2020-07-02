@@ -1,21 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**
+*Esta clase contiene la interfaz grafica que se mostrara al inicio del programa.
+*@author Luis Angel Barrientos Perez
+*@author Carlos Antonio Gallegos Palencia
+*@author Jaime Antonio Hernandez Cabrera
+*@author Gabriel Reyes Cruz
+*@author Jose Angel Rincon Martinez
+*@version 0.1
+*/
+
 package InterfazDeUsuario;
 
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
-/**
- *
- * @author TheHu
- */
 public class Inicio extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Inicio
-     */
     public Inicio() {
         initComponents();
         

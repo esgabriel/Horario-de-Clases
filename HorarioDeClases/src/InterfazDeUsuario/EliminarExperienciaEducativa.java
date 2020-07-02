@@ -1,36 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *Esta clase contiene los metodos para eliminar una Experiencia Educativa mediante una interfaz de usuario
+ *
+ * @author Luis Angel Barrientos Perez
+ * @author Carlos Antonio Gallegos Palencia
+ * @author Jaime Antonio Hernandez Cabrera
+ * @author Gabriel Reyes Cruz
+ * @author Jose Angel Rincon Martinez
+ * @version 0.1
  */
 package InterfazDeUsuario;
 
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import horariodeclases.Archivo;
-//import horariodeclases.Horario;
-//import java.awt.event.KeyEvent;
+import horariodeclases.Horario;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author TheHu
- */
 public class EliminarExperienciaEducativa extends javax.swing.JInternalFrame {
 
     private String horaModificada;
     private String materiaModificada;
 
-    /**
-     * Creates new form EliminarExperiencia
-     */
     public EliminarExperienciaEducativa() {
         initComponents();
+        actualizarTabla();
 
+        //Metodo para quitar bordes en el JInternalFrame
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null);
-        actualizarTabla();
+
     }
 
     /**
@@ -100,27 +99,34 @@ public class EliminarExperienciaEducativa extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * El metodo obotonEliminarActionPerformed elimina algun elemento que el
+     * usuario seleccione en la tabla de horario
+     *
+     * @param evt
+     * @version 0.1
+     */
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
 
+        DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
         int fila = tablaHorario.getSelectedRow();
         int columna = tablaHorario.getSelectedColumn();
 
         if (fila >= 0 && columna >= 0) {
             String elementoSeleccionado = String.valueOf(formatoHorario.getValueAt(fila, columna));
             if (!(elementoSeleccionado.equals(" "))) {
-                int confirmacion=JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar la materia seleccionaada?","Confirmacion",JOptionPane.YES_NO_OPTION);
-                if ( confirmacion == JOptionPane.YES_OPTION) {
+                int confirmacion = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar la materia seleccionaada?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+                if (confirmacion == JOptionPane.YES_OPTION) {
                     setMateriaModificada(elementoSeleccionado);
                     Archivo archivo = new Archivo();
                     columna = 0;
                     String filaObtenida = archivo.buscarRegistro(String.valueOf(formatoHorario.getValueAt(fila, columna)), "Horario.txt", 1);
-                    //horaModificada=filaObtenida;
+
                     setHoraModificada(filaObtenida);
                     borrarDato();
                     actualizarTabla();
                 }
-                //llenarCampo(filaObtenida, elementoSeleccionado);
+
             } else {
                 JOptionPane.showMessageDialog(this, "Seleccione una casilla con inforrmacion a modificar", "Casilla vacia", JOptionPane.ERROR_MESSAGE);
             }
@@ -129,40 +135,36 @@ public class EliminarExperienciaEducativa extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
+    /**
+     * El metodo actualizarTabla permite actualizar automaticamente los
+     * registros de la tabla horario despues de eliminar un registro.
+     *
+     * @version 0.1
+     */
     private void actualizarTabla() {
         DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
-        Archivo archivito = new Archivo();
-        String horario[] = archivito.leerArchivo("Horario.txt");
-        String experienciasEducativas[] = archivito.leerArchivo("ExperienciasEducativas.txt");
+        Archivo archivo = new Archivo();
+        Horario horarioClases = new Horario();
+        String horario[] = archivo.leerArchivo("Horario.txt");
+        String experienciasEducativas[] = archivo.leerArchivo("ExperienciasEducativas.txt");
         formatoHorario.setRowCount(0);
-        String horarioOrdenado[] = ordenarHorario(horario);
+        String horarioOrdenado[] = horarioClases.ordenarHorario(horario);
         for (int i = 0; i < horario.length; i++) {
             formatoHorario.addRow(horarioOrdenado[i].split("/"));
         }
     }
 
-    private String[] ordenarHorario(String[] horario) {
-        String horarioOrdenado[] = new String[horario.length];
-        final int HORA_CLASE = 20;
-        int posicion = 0;
-        for (int i = 8; i <= HORA_CLASE; i++) {
-            for (int j = 0; j < horario.length; j++) {
-                int horaActual = Integer.parseInt(horario[j].split("/")[0].split(":")[0]);
-                if (horaActual == i) {
-                    horarioOrdenado[posicion] = horario[j];
-                    posicion++;
-                    break;
-                }
-            }
-        }
-        return horarioOrdenado;
-    }
-
+    /**
+     * El metodo borrarDato permite borrar el registro seleccionado por el
+     * usuario
+     *
+     * @version 0.1
+     */
     private void borrarDato() {
         Archivo archivo = new Archivo();
         String[] arregloHora = getHoraModificada().split("/");
         String horaNueva = arregloHora[0] + "/";
-        boolean vacio = true;
+        boolean vacio = true; //Variable para verificar si una hora esta vacia
         for (int i = 1; i < arregloHora.length; i++) {
             if (arregloHora[i].equalsIgnoreCase(getMateriaModificada())) {
                 horaNueva += " /";

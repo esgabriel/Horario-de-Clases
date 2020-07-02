@@ -1,27 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *Esta clase contiene los metodos para que el usuario interactue con el programa mediante un menu de opciones
+ *
+ * @author Luis Angel Barrientos Perez
+ * @author Carlos Antonio Gallegos Palencia
+ * @author Jaime Antonio Hernandez Cabrera
+ * @author Gabriel Reyes Cruz
+ * @author Jose Angel Rincon Martinez
+ * @version 0.1
  */
 package InterfazDeUsuario;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author TheHu
- */
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuPrincipal
-     */
-    
     public MenuPrincipal() {
-        
+
         initComponents();
-       
+
+        /*El siguiente bloque de codigo tiene la funcion de mostrar una pantalla
+        de inicio cada vez que se incia el programa
+         */
         Inicio bienvenida = new Inicio();
         jDesktopPane1.add(bienvenida).setVisible(true);
     }
@@ -44,6 +44,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botonBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1210, 580));
         setResizable(false);
 
         jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
@@ -61,7 +62,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jPanel1.setPreferredSize(new java.awt.Dimension(200, 580));
 
         botonEliminar.setBackground(new java.awt.Color(24, 82, 157));
         botonEliminar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
@@ -128,11 +129,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(botonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
+                    .addComponent(botonAgregar, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -145,13 +145,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addComponent(jLabel2)
                 .addGap(98, 98, 98)
-                .addComponent(botonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addComponent(botonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addGap(59, 59, 59)
-                .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(59, 59, 59)
-                .addComponent(botonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addComponent(botonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                 .addGap(61, 61, 61)
-                .addComponent(botonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addComponent(botonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                 .addGap(71, 71, 71))
         );
 
@@ -166,10 +166,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
         );
 
         pack();
@@ -177,9 +177,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMouseClicked
-       jDesktopPane1.removeAll();
-       AgregarExperienciaEducativa agregarExperienciaEducativa = new AgregarExperienciaEducativa();
-       jDesktopPane1.add(agregarExperienciaEducativa).setVisible(true);
+        jDesktopPane1.removeAll();
+        AgregarExperienciaEducativa agregarExperienciaEducativa = new AgregarExperienciaEducativa();
+        jDesktopPane1.add(agregarExperienciaEducativa).setVisible(true);
     }//GEN-LAST:event_botonAgregarMouseClicked
 
     private void botonEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarMouseClicked
@@ -189,14 +189,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEliminarMouseClicked
 
     private void botonBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarMouseClicked
-        // TODO add your handling code here:
         jDesktopPane1.removeAll();
         BuscarExperienciaEducativa buscarExperienciaEducativa = new BuscarExperienciaEducativa();
         jDesktopPane1.add(buscarExperienciaEducativa).setVisible(true);
     }//GEN-LAST:event_botonBuscarMouseClicked
 
     private void botonModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonModificarMouseClicked
-        // TODO add your handling code here:
         jDesktopPane1.removeAll();
         ModificarExperienciaEducativa eliminarExperienciaEducativa = new ModificarExperienciaEducativa();
         jDesktopPane1.add(eliminarExperienciaEducativa).setVisible(true);
@@ -248,5 +246,4 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
-    
 }

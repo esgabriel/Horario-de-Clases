@@ -1,20 +1,40 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Esta clase contiene los metodos necesarios para el manejo de archivos de texto
+ * donde se almacenera los registros del horario
+ *
+ * @author Luis Angel Barrientos Perez
+ * @author Carlos Antonio Gallegos Palencia
+ * @author Jaime Antonio Hernandez Cabrera
+ * @author Gabriel Reyes Cruz
+ * @author Jose Angel Rincon Martinez
+ * @version 0.1
  */
 package horariodeclases;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- *
- * @author TheHu
- */
 public class Archivo {
 
+    /**
+     * El metodo leerArchivo permite abrir y leer el archivo de texto donde se
+     * almacenan los registros del horario
+     *
+     * @param archivo
+     * @throws IOException Este error ocurre cuando no se puede leer el archivo
+     * @throws FileNotFoundException Este error ocurre cuando no se encuentra el
+     * archivo
+     * @throws Exception Este error ocurre cuando no se puede cerrar el archivo
+     * @return registroFormato
+     * @version 0.1
+     */
     public String[] leerArchivo(String archivo) {
         String registroArchivo, registros = "";
         String[] registroFormato = {};
@@ -47,6 +67,20 @@ public class Archivo {
         return registroFormato;
     }
 
+    /**
+     * El metodo buscarRegistro buscar algun dato solicitado por el usuario que
+     * se encuentre en el horario
+     *
+     * @param datoBuscado
+     * @param archivo
+     * @param opcion
+     * @throws IOException Este error ocurre cuando no se puede leer el archivo
+     * @throws FileNotFoundException Este error ocurre cuando no se encuentra el
+     * archivo
+     * @throws Exception Este error ocurre cuando no se puede cerrar el archivo
+     * @return registro
+     * @version 0.1
+     */
     public String buscarRegistro(String datoBuscado, String archivo, int opcion) {
         datoBuscado = datoBuscado.toUpperCase();
         String cadena, registro = "";
@@ -60,7 +94,6 @@ public class Archivo {
 
             try {
                 while ((cadena = leerArchivo.readLine()) != null) {
-                    //patrones necesarios
                     if (opcion == 1) {
                         if (cadena.split("/")[0].equalsIgnoreCase(datoBuscado)) {
                             registro = cadena;
@@ -70,7 +103,7 @@ public class Archivo {
                         Pattern patron = Pattern.compile(expresion);
                         Matcher encuentro = patron.matcher(cadena.split("/")[1]);
                         if (encuentro.find()) {
-                            registro=cadena;
+                            registro = cadena;
                         }
                     }
                 }
@@ -91,6 +124,19 @@ public class Archivo {
         return registro;
     }
 
+    /**
+     * El metodo agregarRegistro permite agregar datos ingresados por el usuario
+     * en el horario
+     *
+     * @param archivo
+     * @param texto
+     * @throws IOException Este error ocurre cuando no se puede leer el archivo
+     * @throws Exception Este error ocurre cuando no se puede abrir el archivo
+     * @throws Exception Este error ocurre cuando no se puede cerrar el archivo
+     * @throws FileNotFoundException Este error ocurre cuando no se encuentra el
+     * archivo
+     * @version 0.1
+     */
     public void agregarRegistro(String archivo, String texto) {
         texto = texto.toUpperCase();
         String registroArchivo;
@@ -168,6 +214,15 @@ public class Archivo {
         archivoNuevo.renameTo(archivoOriginal);
     }
 
+    /**
+     * El metodo verificarHora permite validar que la hora ingresada por el
+     * usuario no interfiera con otra hora en el horario
+     *
+     * @param hora
+     * @param dia
+     * @return disponibilidad
+     * @version 0.1
+     */
     public boolean verificarHora(String hora, String dia) {
 
         String registroArchivo;
@@ -186,7 +241,6 @@ public class Archivo {
                         String diaSemana[] = dia.split(",");
                         String horario[] = registroArchivo.split("/");
                         for (int i = 0; i < diaSemana.length; i++) {
-                            // 5 / Mate / 
                             if (diaSemana[i].equalsIgnoreCase("Lunes")) {
                                 if (!(horario[1].equals(" "))) {
                                     disponibilidad = false;
@@ -237,6 +291,15 @@ public class Archivo {
         return disponibilidad;
     }
 
+    /**
+     * El metodo modificarRegistro permite eliminar o editar un registro del
+     * horario de clases
+     *
+     * @param archivo
+     * @param datoNuevo
+     * @param vacio
+     * @version 0.1
+     */
     public void modificarRegistro(String archivo, String datoNuevo, boolean vacio) {
         datoNuevo = datoNuevo.toUpperCase();
         String registroArchivo;
@@ -298,58 +361,68 @@ public class Archivo {
         archivoNuevo.renameTo(archivoOriginal);
     }
 
-    public String[] mostrarRegistro(String archivo, String palabra, String opcion) {
-        palabra = palabra.toUpperCase();
-        String cadena, cadenaFinal = "";
+    /**
+     * El metodo mostrarRegistro permite realizar la busqueda del horario de
+     * clases que cumpla con los parametros ingresados por el usuario
+     *
+     * @param archivo
+     * @param datoBuscado
+     * @param opcion
+     * @return cadenaFinalEncontrada
+     * @version 0.1
+     */
+    public String[] mostrarRegistro(String archivo, String datoBuscado, String opcion) {
+        datoBuscado = datoBuscado.toUpperCase();
+        String registro, registrosEncontrados = "";
         String cadenaFinalEncontrada[] = null;
-        FileReader fr = null;
-        BufferedReader br = null;
+        FileReader abrirArchivo = null;
+        BufferedReader leerArchivo = null;
 
         try {
-            fr = new FileReader(archivo);
-            br = new BufferedReader(fr);
-            boolean encontrado = false;
+            abrirArchivo = new FileReader(archivo);
+            leerArchivo = new BufferedReader(abrirArchivo);
+            boolean encontrado = false; //Variable para saber si la busqueda tiene minimo un resultado
             if (opcion.equalsIgnoreCase("Profesor")) {
-                String materia = buscarRegistro(palabra, "ExperienciasEducativas.txt",2);
-                palabra = materia.split("/")[0];
+                String materia = buscarRegistro(datoBuscado, "ExperienciasEducativas.txt", 2);
+                datoBuscado = materia.split("/")[0];
                 opcion = "Experiencia Educativa";
             }
             try {
 
-                while ((cadena = br.readLine()) != null) {
+                while ((registro = leerArchivo.readLine()) != null) {
                     if (opcion.equalsIgnoreCase("Experiencia Educativa")) {
-                        String expresion = ".*/" + palabra + "-.*";
+                        String expresion = ".*/" + datoBuscado + "-.*";
                         Pattern patron = Pattern.compile(expresion);
-                        Matcher encuentro = patron.matcher(cadena);
+                        Matcher encuentro = patron.matcher(registro);
                         if (encuentro.find()) {
-                            cadenaFinal += cadena + "&";
+                            registrosEncontrados += registro + "&";
                             encontrado = true;
                         }
                     }
                     if (opcion.equalsIgnoreCase("Salon")) {
-                        String expresion = ".*-" + palabra + "-.*";
+                        String expresion = ".*-" + datoBuscado + "-.*";
                         Pattern patron = Pattern.compile(expresion);
-                        Matcher encuentro = patron.matcher(cadena);
+                        Matcher encuentro = patron.matcher(registro);
                         if (encuentro.find()) {
-                            cadenaFinal += cadena + "&";
+                            registrosEncontrados += registro + "&";
                             encontrado = true;
                         }
                     }
                 }
                 if (encontrado) {
-                    cadenaFinalEncontrada = cadenaFinal.split("&");
+                    cadenaFinalEncontrada = registrosEncontrados.split("&");
                 }
-            } catch (IOException e2) {
+            } catch (IOException errorLectura) {
                 System.out.println("Error de lectura");
             }
-        } catch (FileNotFoundException e2) {
+        } catch (FileNotFoundException erprArchivoNoEncontrado) {
             System.out.println("Archivo no encontrado");
         } finally {
             try {
-                if (fr != null) {
-                    fr.close();
+                if (abrirArchivo != null) {
+                    abrirArchivo.close();
                 }
-            } catch (Exception e) {
+            } catch (Exception errorCerrarArchivo) {
 
             }
         }

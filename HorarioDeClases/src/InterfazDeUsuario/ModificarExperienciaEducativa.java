@@ -1,7 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *Esta clase contiene los metodos para modificar una Experiencia Educativa mediante una interfaz de usuario
+ *
+ * @author Luis Angel Barrientos Perez
+ * @author Carlos Antonio Gallegos Palencia
+ * @author Jaime Antonio Hernandez Cabrera
+ * @author Gabriel Reyes Cruz
+ * @author Jose Angel Rincon Martinez
+ * @version 0.1
  */
 package InterfazDeUsuario;
 
@@ -12,19 +17,15 @@ import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author TheHu
- */
 public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
 
     private String horaModificada;
     private String materiaModificada;
-    /**
-     * Creates new form ModificarExperienciaEducativa
-     */
+
     public ModificarExperienciaEducativa() {
         initComponents();
+
+        //Metodo para quitar bordes en el JInternalFrame
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null);
@@ -56,6 +57,8 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaHorario = new javax.swing.JTable();
         campoSalon = new javax.swing.JTextField();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel1.setText("Experiencia Educativa");
@@ -277,6 +280,14 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_boxMiercolesActionPerformed
 
+    /**
+     * El metodo botonModificarActionPerformed permite cargar los datos de la
+     * Experiencia Educativa en la hora seleccionada por el usuario para su
+     * modificacion
+     *
+     * @param evt
+     * @version 0.1
+     */
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
 
@@ -288,8 +299,8 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
             if (!(elementoSeleccionado.equals(" "))) {
                 Archivo archivo = new Archivo();
                 columna = 0;
-                String filaObtenida = archivo.buscarRegistro(String.valueOf(formatoHorario.getValueAt(fila, columna)), "Horario.txt",1);
-                horaModificada=filaObtenida;
+                String filaObtenida = archivo.buscarRegistro(String.valueOf(formatoHorario.getValueAt(fila, columna)), "Horario.txt", 1);
+                horaModificada = filaObtenida;
                 setHoraModificada(filaObtenida);
                 llenarCampo(filaObtenida, elementoSeleccionado);
             } else {
@@ -301,7 +312,7 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void boxJuevesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxJuevesActionPerformed
-        // TODO add your handling code here:
+
         if (!boxJueves.isSelected()) {
             boxTodosLosDias.setSelected(false);
         } else {
@@ -312,7 +323,7 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_boxJuevesActionPerformed
 
     private void campoHoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoHoraKeyTyped
-        // TODO add your handling code here:
+
         char caracter = evt.getKeyChar();
         if (!Character.isDigit(caracter)) {
             evt.consume();
@@ -320,7 +331,7 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campoHoraKeyTyped
 
     private void boxMartesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMartesActionPerformed
-        // TODO add your handling code here:
+
         if (!boxMartes.isSelected()) {
             boxTodosLosDias.setSelected(false);
         } else {
@@ -330,53 +341,59 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_boxMartesActionPerformed
 
+    /**
+     * El metodo botonGuardarActionPerformed permite guardar la informacion
+     * modificada de la Experiencia Educativa en el horario
+     *
+     * @param evt
+     * @version 0.1
+     */
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        // TODO add your handling code here:
+
         borrarDato();
         if (!campoEE.getText().equals("")) {
             if (!campoHora.getText().equals("")) {
                 if (!campoSalon.getText().equals("")) {
-                        if (boxLunes.isSelected() || boxMartes.isSelected() || boxMiercoles.isSelected() || boxJueves.isSelected() || boxViernes.isSelected()) {
-                            Archivo archivo = new Archivo();
-                            String boxSeleccionados = "";
-                            if (boxTodosLosDias.isSelected()) {
-                                boxSeleccionados = "Lunes,Martes,Miercoles,Jueves,Viernes";
-                            } else {
-                                if (boxLunes.isSelected()) {
-                                    boxSeleccionados += "Lunes";
-                                }
-                                if (boxMartes.isSelected()) {
-                                    boxSeleccionados += ",Martes";
-                                }
-                                if (boxMiercoles.isSelected()) {
-                                    boxSeleccionados += ",Miercoles";
-                                }
-                                if (boxJueves.isSelected()) {
-                                    boxSeleccionados += ",Jueves";
-                                }
-                                if (boxViernes.isSelected()) {
-                                    boxSeleccionados += ",Viernes";
-                                }
+                    if (boxLunes.isSelected() || boxMartes.isSelected() || boxMiercoles.isSelected() || boxJueves.isSelected() || boxViernes.isSelected()) {
+                        Archivo archivo = new Archivo();
+                        String boxSeleccionados = "";
+                        if (boxTodosLosDias.isSelected()) {
+                            boxSeleccionados = "Lunes,Martes,Miercoles,Jueves,Viernes";
+                        } else {
+                            if (boxLunes.isSelected()) {
+                                boxSeleccionados += "Lunes";
                             }
-                            int horaIngresada = Integer.parseInt(campoHora.getText());
-                            final int HORAENTRADA = 8, HORASALIDA = 20;
-                            if (horaIngresada >= HORAENTRADA && horaIngresada <= HORASALIDA) {
-                                if (archivo.verificarHora(campoHora.getText(), boxSeleccionados)) {
-                                    Horario horario = new Horario();
-                                    //borrarDato();
-                                    String horarioCompleto = horario.crearFormatoRegistro(campoEE.getText(), campoHora.getText(), boxSeleccionados, campoSalon.getText());
-                                    archivo.agregarRegistro("Horario.txt", horarioCompleto);
-                                    actualizarTabla();
-                                    vaciarCampos();
-                                } else {
-                                    JOptionPane.showMessageDialog(this, "La hora y día ingresados No se encuentran disponibles");
-                                }
+                            if (boxMartes.isSelected()) {
+                                boxSeleccionados += ",Martes";
+                            }
+                            if (boxMiercoles.isSelected()) {
+                                boxSeleccionados += ",Miercoles";
+                            }
+                            if (boxJueves.isSelected()) {
+                                boxSeleccionados += ",Jueves";
+                            }
+                            if (boxViernes.isSelected()) {
+                                boxSeleccionados += ",Viernes";
+                            }
+                        }
+                        int horaIngresada = Integer.parseInt(campoHora.getText());
+                        final int HORAENTRADA = 8, HORASALIDA = 20;
+                        if (horaIngresada >= HORAENTRADA && horaIngresada <= HORASALIDA) {
+                            if (archivo.verificarHora(campoHora.getText(), boxSeleccionados)) {
+                                Horario horario = new Horario();
+                                String horarioCompleto = horario.crearFormatoRegistro(campoEE.getText(), campoHora.getText(), boxSeleccionados, campoSalon.getText());
+                                archivo.agregarRegistro("Horario.txt", horarioCompleto);
+                                actualizarTabla();
+                                vaciarCampos();
                             } else {
-                                JOptionPane.showMessageDialog(this, "Error, hora fuera de rango de clases (8 - 20 hrs)", "Hora ingresada", JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(this, "La hora y día ingresados No se encuentran disponibles");
                             }
                         } else {
-                            JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguno de los Días.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "Error, hora fuera de rango de clases (8 - 20 hrs)", "Hora ingresada", JOptionPane.ERROR_MESSAGE);
                         }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguno de los Días.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(this, "No se ha ingresado el número de Salón.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -389,7 +406,7 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void boxLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxLunesActionPerformed
-        // TODO add your handling code here:
+
         if (!boxLunes.isSelected()) {
             boxTodosLosDias.setSelected(false);
         } else {
@@ -400,7 +417,7 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_boxLunesActionPerformed
 
     private void boxTodosLosDiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTodosLosDiasActionPerformed
-        // TODO add your handling code here:
+
         if (boxTodosLosDias.isSelected()) {
             boxLunes.setSelected(true);
             boxMartes.setSelected(true);
@@ -417,7 +434,7 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_boxTodosLosDiasActionPerformed
 
     private void campoEEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoEEKeyTyped
-        // TODO add your handling code here:
+
         char caracter = evt.getKeyChar();
         if (!Character.isLetter(caracter) && caracter != KeyEvent.VK_SPACE) {
             evt.consume();
@@ -425,40 +442,55 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campoEEKeyTyped
 
     private void campoSalonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoSalonKeyTyped
-        // TODO add your handling code here:
+
         char caracter = evt.getKeyChar();
         if (!Character.isDigit(caracter)) {
             evt.consume();
         }
     }//GEN-LAST:event_campoSalonKeyTyped
 
+    /**
+     * El metodo actualizarTabla permite actualizar automaticamente los
+     * registros de la tabla horario despues de modificar una clase seleccionada
+     *
+     * @version 0.1
+     */
     private void actualizarTabla() {
         DefaultTableModel formatoHorario = (DefaultTableModel) tablaHorario.getModel();
         Archivo archivito = new Archivo();
+        Horario horarioClases = new Horario();
         String horario[] = archivito.leerArchivo("Horario.txt");
         String experienciasEducativas[] = archivito.leerArchivo("ExperienciasEducativas.txt");
         formatoHorario.setRowCount(0);
-        String horarioOrdenado[] = ordenarHorario(horario);
+        String horarioOrdenado[] = horarioClases.ordenarHorario(horario);
         for (int i = 0; i < horario.length; i++) {
             formatoHorario.addRow(horarioOrdenado[i].split("/"));
         }
     }
 
+    /**
+     * El metodo llenarCampo permite recibir los datos de la materia
+     * seleccionada para que el usuario pueda modificarlos
+     *
+     * @param texto
+     * @param materiaBuscada
+     * @version 0.1
+     */
     private void llenarCampo(String texto, String materiaBuscada) {
         diaSeleccionado(0);
         String[] arreglo = texto.split("/");
-        String salon="", materia="";
+        String salon = "", materia = "";
         campoHora.setText(arreglo[0].split(":")[0]);
         for (int i = 1; i < arreglo.length; i++) {
             if (arreglo[i].equalsIgnoreCase(materiaBuscada)) {
-                salon=String.valueOf(arreglo[i].charAt(arreglo[i].length()-2));
+                salon = String.valueOf(arreglo[i].charAt(arreglo[i].length() - 2));
                 diaSeleccionado(i);
                 char caracter;
-                if(materia.equals("")){
-                for (int j = arreglo[i].length()-4; j >= 0; j--) {
-                    caracter=arreglo[i].charAt(j);
-                    materia=caracter+materia;
-                }
+                if (materia.equals("")) {
+                    for (int j = arreglo[i].length() - 4; j >= 0; j--) {
+                        caracter = arreglo[i].charAt(j);
+                        materia = caracter + materia;
+                    }
                 }
             }
         }
@@ -467,49 +499,38 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
         setMateriaModificada(materiaBuscada);
     }
 
-    private void diaSeleccionado(int dia){
-        if (dia==0){
+    /**
+     * El metodo diaSeleccionado permite saber en que dia se toma la clase
+     *
+     * @param dia
+     * @version 0.1
+     */
+    private void diaSeleccionado(int dia) {
+        if (dia == 0) {
             boxLunes.setSelected(false);
             boxMartes.setSelected(false);
             boxMiercoles.setSelected(false);
             boxJueves.setSelected(false);
             boxViernes.setSelected(false);
         }
-        if (dia==1) {
+        if (dia == 1) {
             boxLunes.setSelected(true);
         }
-        if (dia==2) {
+        if (dia == 2) {
             boxMartes.setSelected(true);
         }
-        if (dia==3) {
+        if (dia == 3) {
             boxMiercoles.setSelected(true);
         }
-        if (dia==4) {
+        if (dia == 4) {
             boxJueves.setSelected(true);
         }
-        if (dia==5) {
+        if (dia == 5) {
             boxViernes.setSelected(true);
         }
     }
-    
-    private String[] ordenarHorario(String[] horario) {
-        String horarioOrdenado[] = new String[horario.length];
-        final int HORA_CLASE = 20;
-        int posicion = 0;
-        for (int i = 8; i <= HORA_CLASE; i++) {
-            for (int j = 0; j < horario.length; j++) {
-                int horaActual = Integer.parseInt(horario[j].split("/")[0].split(":")[0]);
-                if (horaActual == i) {
-                    horarioOrdenado[posicion] = horario[j];
-                    posicion++;
-                    break;
-                }
-            }
-        }
-        return horarioOrdenado;
-    }
 
-    private void vaciarCampos(){
+    private void vaciarCampos() {
         campoEE.setText("");
         campoHora.setText("");
         campoSalon.setText("");
@@ -520,43 +541,49 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
         boxViernes.setSelected(false);
         boxTodosLosDias.setSelected(false);
     }
-    
-    private void borrarDato(){
+
+    /**
+     * El metodo borrarDato permite borrar el registro seleccionado por el
+     * usuario antes de modificar el horario
+     *
+     * @version 0.1
+     */
+    private void borrarDato() {
         Archivo archivo = new Archivo();
-        String []arregloHora=getHoraModificada().split("/");
-        String horaNueva=arregloHora[0]+"/";
-        boolean vacio = true;
+        String[] arregloHora = getHoraModificada().split("/");
+        String horaNueva = arregloHora[0] + "/";
+        boolean vacio = true; //Variable para verificar si una hora esta vacia
         for (int i = 1; i < arregloHora.length; i++) {
-            if(arregloHora[i].equalsIgnoreCase(getMateriaModificada())){
-                horaNueva+=" /";
-            }else{
-                horaNueva+=arregloHora[i]+"/";
+            if (arregloHora[i].equalsIgnoreCase(getMateriaModificada())) {
+                horaNueva += " /";
+            } else {
+                horaNueva += arregloHora[i] + "/";
             }
         }
         for (int i = 1; i < horaNueva.split("/").length; i++) {
             if (!horaNueva.split("/")[i].equals(" ")) {
-                vacio=false;
+                vacio = false;
             }
         }
         archivo.modificarRegistro("Horario.txt", horaNueva, vacio);
     }
-    
-    public void setHoraModificada(String horaModificada){
-        this.horaModificada=horaModificada;
+
+    public void setHoraModificada(String horaModificada) {
+        this.horaModificada = horaModificada;
     }
-    
-    public String getHoraModificada(){
+
+    public String getHoraModificada() {
         return this.horaModificada;
     }
-    
-    public void setMateriaModificada(String materiaModificada){
-        this.materiaModificada=materiaModificada;
+
+    public void setMateriaModificada(String materiaModificada) {
+        this.materiaModificada = materiaModificada;
     }
-    
-    public String getMateriaModificada(){
+
+    public String getMateriaModificada() {
         return this.materiaModificada;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonModificar;

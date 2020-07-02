@@ -1,27 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Esta clase contiene los métodos para buscar una Experiencia Educativa de
+ * acuerdo a los parametros ingresados por el usuario mediante una interfaz
+ * de usuario
+ *
+ * @author Luis Angel Barrientos Perez
+ * @author Carlos Antonio Gallegos Palencia
+ * @author Jaime Antonio Hernandez Cabrera
+ * @author Gabriel Reyes Cruz
+ * @author Jose Angel Rincon Martinez
+ * @version 0.1
  */
 package InterfazDeUsuario;
 
 import horariodeclases.Archivo;
+import horariodeclases.Horario;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author angel
- */
 public class BuscarExperienciaEducativa extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form BuscarExperienciaEducativa
-     */
     public BuscarExperienciaEducativa() {
         initComponents();
-        //actualizarTabla();
+
+        //Metodo para quitar bordes en el JInternalFrame
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
+        bi.setNorthPane(null);
+
     }
 
     /**
@@ -40,6 +47,8 @@ public class BuscarExperienciaEducativa extends javax.swing.JInternalFrame {
         botonBuscar = new javax.swing.JButton();
         parametroBusqueda = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+
+        setPreferredSize(new java.awt.Dimension(1020, 580));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel1.setText("Dato a buscar");
@@ -114,28 +123,36 @@ public class BuscarExperienciaEducativa extends javax.swing.JInternalFrame {
                     .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(81, 81, 81)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * El metodo botonBuscarActionPerformed permite realizar la busqueda con las
+     * condiciones ingresadas por el usuario
+     *
+     * @param evt
+     * @version 0.1
+     */
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        // TODO add your handling code here:
-        Archivo busqueda = new Archivo();
-        DefaultTableModel modelo = (DefaultTableModel) tablaHorario.getModel();
 
+        Archivo busqueda = new Archivo();
+        DefaultTableModel formatoTablaHorario = (DefaultTableModel) tablaHorario.getModel();
+        Horario horarioClases = new Horario();
+        
         if (!campoBusqueda.getText().equals("")) {
             String textoBuscado = campoBusqueda.getText();
-            String opcionBuscado = String.valueOf(parametroBusqueda.getSelectedItem());
-            String[] horarioEncontrado = busqueda.mostrarRegistro("Horario.txt", textoBuscado, opcionBuscado);
+            String datoSolicitado = String.valueOf(parametroBusqueda.getSelectedItem());
+            String[] horarioEncontrado = busqueda.mostrarRegistro("Horario.txt", textoBuscado, datoSolicitado);
             try {
-                String[] horarioOrdenado = ordenarHorario(horarioEncontrado);
-                modelo.setRowCount(0);
+                String[] horarioOrdenado = horarioClases.ordenarHorario(horarioEncontrado);
+                formatoTablaHorario.setRowCount(0);
                 for (int i = 0; i < horarioEncontrado.length; i++) {
-                    modelo.addRow(horarioOrdenado[i].split("/"));
+                    formatoTablaHorario.addRow(horarioOrdenado[i].split("/"));
                 }
-            }catch (NullPointerException e2){
+            } catch (NullPointerException busquedaNoEncontrada) {
                 JOptionPane.showMessageDialog(this, "Busqueda no encontrada");
             }
         } else {
@@ -144,22 +161,6 @@ public class BuscarExperienciaEducativa extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_botonBuscarActionPerformed
 
-    private String[] ordenarHorario(String[] horario) {
-        String horarioOrdenado[] = new String[horario.length];
-        final int HORA_CLASE = 20;
-        int posicion = 0;
-        for (int i = 8; i <= HORA_CLASE; i++) {
-            for (int j = 0; j < horario.length; j++) {
-                int horaActual = Integer.parseInt(horario[j].split("/")[0].split(":")[0]);
-                if (horaActual == i) {
-                    horarioOrdenado[posicion] = horario[j];
-                    posicion++;
-                    break;
-                }
-            }
-        }
-        return horarioOrdenado;
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBuscar;
     private javax.swing.JTextField campoBusqueda;
