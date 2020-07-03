@@ -290,7 +290,7 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boxViernesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxViernesActionPerformed
-        // TODO add your handling code here:
+
         if (!boxViernes.isSelected()) {
             boxTodosLosDias.setSelected(false);
         } else {
@@ -301,7 +301,7 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_boxViernesActionPerformed
 
     private void boxMiercolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMiercolesActionPerformed
-        // TODO add your handling code here:
+
         if (!boxMiercoles.isSelected()) {
             boxTodosLosDias.setSelected(false);
         } else {
@@ -535,8 +535,8 @@ public class ModificarExperienciaEducativa extends javax.swing.JInternalFrame {
     /**
      * El metodo diaSeleccionado permite saber en que dia se toma la clase
      *
-     * @param dia Este parametro recibe un numero para indicar el dia en que toma
-     * la Experiencia Educativa en el horario
+     * @param dia Este parametro recibe un numero para indicar el dia en que
+     * toma la Experiencia Educativa en el horario
      * @version 0.1
      */
     private void diaSeleccionado(int dia) {

@@ -119,7 +119,7 @@ public class EliminarExperienciaEducativa extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * El metodo obotonEliminarActionPerformed elimina algun elemento que el
+     * El metodo botonEliminarActionPerformed elimina algun elemento que el
      * usuario seleccione en la tabla de horario
      *
      * @param evt
