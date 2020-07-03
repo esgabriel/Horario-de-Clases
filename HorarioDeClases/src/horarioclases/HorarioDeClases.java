@@ -10,9 +10,9 @@
  * @author Jose Angel Rincon Martinez
  * @version 0.1
  */
-package horariodeclases;
+package horarioclases;
 
-import InterfazDeUsuario.MenuPrincipal;
+import interfazusuario.MenuPrincipal;
 
 public class HorarioDeClases {
 

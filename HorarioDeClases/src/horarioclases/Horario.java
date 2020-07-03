@@ -8,7 +8,7 @@
  * @author Jose Angel Rincon Martinez
  * @version 0.1
  */
-package horariodeclases;
+package horarioclases;
 
 public class Horario {
 
@@ -16,13 +16,13 @@ public class Horario {
      * El metodo crearFormatoRegistro permite crear el formato para almacenar
      * los registros en el archivo "Horario.txt"
      *
-     * @param experienciaEducativa Este parametro recibe el nombre de la experiencia
-     * educativa
-     * @param hora Este parametro Este parametro recibe la hora en que se impartira
-     * la clase
+     * @param experienciaEducativa Este parametro recibe el nombre de la
+     * experiencia educativa
+     * @param hora Este parametro Este parametro recibe la hora en que se
+     * impartira la clase
      * @param dia Este parametro recibe el dia que sera impartida la clase
-     * @param salon Este parametro recibe el numero del salon en que sera impartida
-     * la clase
+     * @param salon Este parametro recibe el numero del salon en que sera
+     * impartida la clase
      * @return formatoRegistro
      * @version 0.1
      */
